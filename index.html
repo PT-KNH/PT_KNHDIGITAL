@@ -388,7 +388,7 @@ code.url{display:block;background:#f1f5f9;padding:8px;border-radius:8px;font-siz
       <div class="page-head"><h2>⚙️ ตั้งค่าโมดูล</h2>
         <div class="head-tools"><button class="btn primary" onclick="openModForm('')">+ เพิ่มโมดูล</button></div></div>
       <div class="table-wrap"><table class="tbl">
-        <thead><tr><th style="width:46px">ไอคอน</th><th>ชื่อ</th><th>คำอธิบาย</th><th>ลิงก์</th><th style="width:70px">สถานะ</th><th style="width:220px">จัดการ</th></tr></thead>
+        <thead><tr><th style="width:56px" class="ct">ลำดับ</th><th style="width:46px">ไอคอน</th><th>ชื่อ</th><th>คำอธิบาย</th><th>ลิงก์</th><th style="width:70px">สถานะ</th><th style="width:220px">จัดการ</th></tr></thead>
         <tbody id="modBody"></tbody></table></div>
     </section>
 
@@ -738,7 +738,9 @@ function renderSidebarMods(mods){
 }
 function openMod(el){
   var u = el.getAttribute('data-url');
-  if (u.charAt(0) === '#') goPage(u.slice(1)); else window.open(u, '_blank', 'noopener');
+  if (u.charAt(0) === '#'){
+    if ($('page-' + u.slice(1))) goPage(u.slice(1)); else toast('ไม่พบหน้า "' + u + '" ในระบบ ตรวจสอบลิงก์โมดูล');
+  } else window.open(u, '_blank', 'noopener');
 }
 
 /* Smart Assistant Banner: แจ้งเตือนสิ่งที่ต้องทำเฉพาะบุคคล */
@@ -1316,27 +1318,32 @@ var MOD_SAVE_T = null;
 function renderModTable(){
   $('modBody').innerHTML = MOD_CACHE.map(function(m, i){
     var id = esc(m.id);
-    return '<tr><td style="font-size:1.3rem">' + esc(m.icon) + '</td><td><b style="border-left:4px solid ' + esc(m.color) + ';padding-left:6px">' + esc(m.name) + '</b></td>' +
+    return '<tr><td class="ct"><b>' + (i + 1) + '</b></td><td style="font-size:1.3rem">' + esc(m.icon) + '</td><td><b style="border-left:4px solid ' + esc(m.color) + ';padding-left:6px">' + esc(m.name) + '</b></td>' +
       '<td>' + esc(m.subtitle) + '</td><td><small>' + esc(m.url) + '</small></td>' +
       '<td><span class="bg ' + (m.active ? 'green' : 'gray') + '">' + (m.active ? 'เปิด' : 'ปิด') + '</span></td><td>' +
       '<button class="btn sm" ' + (i === 0 ? 'disabled' : '') + ' onclick="mMove(\'' + id + '\',\'up\')">↑</button> ' +
       '<button class="btn sm" ' + (i === MOD_CACHE.length - 1 ? 'disabled' : '') + ' onclick="mMove(\'' + id + '\',\'down\')">↓</button> ' +
       '<button class="btn sm" onclick="openModForm(\'' + id + '\')">แก้ไข</button> <button class="btn sm danger" onclick="mDel(\'' + id + '\')">ลบ</button></td></tr>';
-  }).join('') || '<tr><td colspan="6" class="ct muted">ไม่มีข้อมูล</td></tr>';
+  }).join('') || '<tr><td colspan="7" class="ct muted">ไม่มีข้อมูล</td></tr>';
 }
 function loadMods(){
-  skel('modBody', 6, 4);
+  skel('modBody', 7, 4);
   api('listModules', TOKEN).then(function(rows){ MOD_CACHE = rows || []; renderModTable(); }).catch(fail);
 }
 function findMod(id){ var m = null; MOD_CACHE.forEach(function(x){ if (x.id === id) m = x; }); return m; }
 function openModForm(id){
   var m = id ? findMod(id) : null, cur = m ? m.icon : '📁';
+  var curPos = 1;
+  MOD_CACHE.forEach(function(x, k){ if (m && x.id === m.id) curPos = k + 1; });
+  if (!m) curPos = MOD_CACHE.length + 1;
   var grid = ICON_SET.map(function(ic){ return '<div class="icon-opt" onclick="pickIcon(this)">' + ic + '</div>'; }).join('');
   var body = fld('ไอคอน', '<div class="icon-row"><div class="icon-preview" id="mIconPreview">' + esc(cur) + '</div><input type="hidden" id="mIcon" value="' + esc(cur) + '">' +
       '<small class="muted">แตะเลือกด้านล่าง</small></div><div class="icon-grid">' + grid + '</div>') +
     fld('ชื่อโมดูล *', '<input id="mName" value="' + esc(m ? m.name : '') + '">') +
     fld('คำอธิบาย', '<input id="mSub" value="' + esc(m ? m.subtitle : '') + '">') +
     fld('ลิงก์ * (#kpi สำหรับหน้าในระบบ หรือ https://...)', '<input id="mUrl" value="' + esc(m ? m.url : '') + '">') +
+    fld('ลำดับที่แสดงในเมนู (1 = บนสุด · ทั้งหมด ' + (m ? MOD_CACHE.length : MOD_CACHE.length + 1) + ' รายการ)',
+        '<input id="mOrder" type="number" min="1" max="' + (m ? MOD_CACHE.length : MOD_CACHE.length + 1) + '" step="1" value="' + curPos + '">') +
     '<div class="grid2">' + fld('สีแถบ', '<input id="mColor" type="color" value="' + esc(m ? m.color : '#0ea5e9') + '" style="height:40px;padding:2px">') +
     '<div class="fld"><label>&nbsp;</label><label class="chk"><input type="checkbox" id="mActive"' + (!m || m.active ? ' checked' : '') + '> แสดงในเมนู</label></div></div>';
   openModal(m ? 'แก้ไขโมดูล' : 'เพิ่มโมดูล', body,
@@ -1345,7 +1352,7 @@ function openModForm(id){
 function pickIcon(el){ $('mIcon').value = el.textContent; $('mIconPreview').textContent = el.textContent; }
 function saveMod(id){
   var d = { id:id, name:$('mName').value.trim(), subtitle:$('mSub').value.trim(), url:$('mUrl').value.trim(),
-    icon:$('mIcon').value, color:$('mColor').value, active:$('mActive').checked };
+    icon:$('mIcon').value, color:$('mColor').value, active:$('mActive').checked, order:$('mOrder').value };
   if (!d.name || !d.url) return toast('กรอกชื่อและลิงก์ให้ครบ');
   if (!/^#[a-z]+$/i.test(d.url) && !/^https:\/\//i.test(d.url)) return toast('ลิงก์ต้องขึ้นต้นด้วย # หรือ https:// เท่านั้น');
   spin(1);
