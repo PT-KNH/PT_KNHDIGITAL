@@ -3,18 +3,20 @@
 <head>
 <base target="_top">
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="referrer" content="no-referrer">
-<meta name="theme-color" content="#0f172a">
+<meta name="theme-color" content="#f9f9fb">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="apple-touch-icon" href="https://em-content.zobj.net/source/apple/391/hospital_1f3e5.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="PT Center">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Sarabun','Segoe UI',Tahoma,sans-serif;background:#f1f5f9;color:#0f172a;font-size:14px;line-height:1.5}
+body{font-family:'Sarabun','Segoe UI',Tahoma,sans-serif;background:#f1f5f9;color:#0f172a;font-size:14px;line-height:1.5;-webkit-tap-highlight-color:transparent}
 .hide{display:none!important}
 a{text-decoration:none;color:inherit}
 button{font-family:inherit;cursor:pointer}
@@ -27,7 +29,7 @@ button{font-family:inherit;cursor:pointer}
 .btn.line{background:#06c755;color:#fff}
 .btn.ai{background:#8b5cf6;color:#fff}
 .btn.sm{padding:4px 9px;font-size:.76rem}
-input,select,textarea{font-family:inherit;font-size:.9rem;padding:8px 10px;border:1px solid #cbd5e1;border-radius:8px;width:100%;background:#fff}
+input,select,textarea{font-family:inherit;font-size:.9rem;padding:8px 10px;border:1px solid #cbd5e1;border-radius:8px;width:100%;background:#fff;color:inherit}
 input:focus,select:focus,textarea:focus{outline:none;border-color:#0ea5e9;box-shadow:0 0 0 3px rgba(14,165,233,.15)}
 input:disabled,select:disabled,textarea:disabled{background:#f1f5f9;color:#64748b}
 label{font-size:.82rem;color:#475569;display:block;margin-bottom:3px;font-weight:500}
@@ -40,9 +42,9 @@ label{font-size:.82rem;color:#475569;display:block;margin-bottom:3px;font-weight
 .msg.err{background:#fee2e2;color:#b91c1c}
 .msg.ok{background:#d1fae5;color:#065f46}
 
-#mobHeader{display:none;background:#0f172a;color:#fff;padding:12px 16px;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:950;box-shadow:0 2px 10px rgba(0,0,0,.15)}
-#mobHeader .m-brand{font-weight:700;font-size:.98rem;display:flex;align-items:center;gap:8px}
-#mobHeader .m-btn{background:#1e293b;color:#fff;border:1px solid #334155;border-radius:8px;padding:6px 12px;font-size:.85rem}
+#mobHeader{display:none}
+#tabBar{display:none}
+#sideMask{display:none}
 
 #app{display:flex;min-height:100vh}
 #side{width:240px;background:#0f172a;color:#cbd5e1;padding:16px 12px;flex:none;position:sticky;top:0;height:100vh;overflow:auto;display:flex;flex-direction:column;z-index:940}
@@ -76,7 +78,7 @@ h3.sec{margin:20px 0 10px;font-size:1rem}
 
 .filter-bar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:12px}
 .pills{display:flex;gap:6px;flex-wrap:wrap}
-.pill{border:1px solid #cbd5e1;background:#fff;color:#475569;border-radius:20px;padding:5px 12px;font-size:.8rem;cursor:pointer;transition:.15s}
+.pill{border:1px solid #cbd5e1;background:#fff;color:#475569;border-radius:20px;padding:5px 12px;font-size:.8rem;cursor:pointer;transition:.15s;white-space:nowrap}
 .pill:hover{border-color:#0ea5e9;color:#0ea5e9}
 .pill.on{background:#0ea5e9;color:#fff;border-color:#0ea5e9;font-weight:600}
 
@@ -167,14 +169,90 @@ code.url{display:block;background:#f1f5f9;padding:8px;border-radius:8px;font-siz
 #toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:#0f172a;color:#fff;padding:10px 20px;border-radius:30px;font-size:.86rem;z-index:1300;display:none;box-shadow:0 8px 20px rgba(0,0,0,.3);max-width:90vw;text-align:center}
 #spin{position:fixed;inset:0;background:rgba(255,255,255,.6);z-index:1200;display:none;align-items:center;justify-content:center;font-weight:600;color:#0ea5e9}
 #spin.on{display:flex}
+
+/* ================= MOBILE — iOS STYLE (≤860px) ================= */
 @media(max-width:860px){
-  #mobHeader{display:flex}
+  body{background:#f2f2f7;color:#000;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Sarabun','Segoe UI',sans-serif;font-size:15px}
+  input,select,textarea{font-size:16px;border-radius:10px;border-color:#d1d1d6;padding:10px 12px}
+  .btn{border-radius:10px;min-height:40px;font-size:.9rem;font-weight:600}
+  .btn.sm{min-height:34px;font-size:.8rem;border-radius:8px}
+  .btn.primary{background:#007aff}
+  .btn.danger{background:#ff3b30}
+  .btn.ok{background:#34c759}
+  .btn:not(.primary):not(.danger):not(.ok):not(.line):not(.ai){background:#e9e9ee;color:#007aff}
+
+  #mobHeader{display:flex;align-items:center;justify-content:space-between;gap:10px;position:sticky;top:0;z-index:950;
+    background:rgba(249,249,251,.86);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);
+    border-bottom:.5px solid rgba(60,60,67,.29);padding:calc(8px + env(safe-area-inset-top)) 12px 8px}
+  #mobHeader .m-btn{background:none;border:0;color:#007aff;font-size:22px;min-width:40px;min-height:40px;text-align:left}
+  #mobHeader .m-brand{font-size:17px;font-weight:600;flex:1;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  #mobHeader .m-av{width:32px;height:32px;border-radius:50%;object-fit:cover;background:#e5e5ea;cursor:pointer}
+
   #app{flex-direction:column}
-  #side{width:100%;height:auto;position:fixed;top:52px;left:0;right:0;max-height:calc(100vh - 52px);display:none;box-shadow:0 12px 30px rgba(0,0,0,.4)}
-  #side.mob-open{display:flex}
+  #side{position:fixed;top:0;bottom:0;left:0;width:82%;max-width:320px;height:100%;z-index:990;
+    transform:translateX(-102%);transition:transform .25s ease;padding-top:calc(16px + env(safe-area-inset-top));
+    padding-bottom:calc(16px + env(safe-area-inset-bottom))}
+  #side.mob-open{transform:none;box-shadow:0 0 40px rgba(0,0,0,.35)}
+  #sideMask.on{display:block;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:985}
+
+  main{padding:8px 16px calc(100px + env(safe-area-inset-bottom))}
+  .page-head{flex-direction:column;align-items:stretch;gap:10px;margin:6px 0 14px}
+  .page-head h2{font-size:30px;font-weight:700;letter-spacing:-.5px}
+  .head-tools{gap:8px}
+  .head-tools > *{flex:1 1 auto}
+  .head-tools input,.head-tools select{width:100%!important;min-width:0}
+  #greet{margin:-6px 0 12px;color:#8e8e93}
+
   .two-col,.grid2,.grid3,.set-grid{grid-template-columns:1fr}
   .m-grid{grid-template-columns:repeat(3,1fr)}
-  main{padding:16px 14px 90px}
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .stat,.panel{border-radius:14px;box-shadow:none;border-top-width:0!important}
+  .stat .n{font-size:1.6rem}
+  .smart-chip{width:100%;border-radius:14px;box-shadow:none;border-left-width:5px}
+  .pills{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:2px;width:100%}
+  .pill{padding:7px 14px;font-size:.85rem}
+  .pill.on{background:#007aff;border-color:#007aff}
+  #kSearch,#pSearch,#lgSearch{width:100%!important}
+  .filter-bar{flex-direction:column;align-items:stretch}
+
+  .user-dock{display:none!important}
+
+  #tabBar{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:960;
+    background:rgba(249,249,251,.92);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);
+    border-top:.5px solid rgba(60,60,67,.29);padding:6px 0 calc(6px + env(safe-area-inset-bottom))}
+  #tabBar button{background:none;border:0;color:#8e8e93;font-size:10px;font-weight:500;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:2px;min-height:48px;position:relative}
+  #tabBar button .ti{font-size:22px;line-height:1;filter:grayscale(1);opacity:.65}
+  #tabBar button.on{color:#007aff}
+  #tabBar button.on .ti{filter:none;opacity:1}
+  #tabBar .tb-badge{position:absolute;top:2px;left:calc(50% + 6px);background:#ff3b30;color:#fff;font-size:10px;font-weight:700;
+    min-width:18px;height:18px;line-height:18px;border-radius:9px;padding:0 5px}
+
+  #toast{bottom:calc(92px + env(safe-area-inset-bottom));border-radius:14px}
+
+  #mask{align-items:flex-end;padding:0}
+  .modal,.modal.wide{max-width:100%;border-radius:14px 14px 0 0;max-height:92vh}
+  .modal-h{padding:14px 16px}
+  .modal-b{padding:14px 16px}
+  .modal-f{padding:10px 16px calc(12px + env(safe-area-inset-bottom))}
+  .modal-f .btn{flex:1}
+  .icon-grid{grid-template-columns:repeat(6,1fr)}
+
+  .table-wrap{background:transparent;box-shadow:none;overflow:visible;border-radius:0}
+  table.tbl:not(.sm){min-width:0}
+  table.tbl:not(.sm) thead{display:none}
+  table.tbl:not(.sm) tbody tr{display:block;background:#fff;border-radius:14px;margin-bottom:10px;padding:4px 14px}
+  table.tbl:not(.sm) tbody td{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px 12px;
+    border-bottom:.5px solid #e5e5ea;padding:10px 0;text-align:right}
+  table.tbl:not(.sm) tbody td:last-child{border-bottom:0}
+  table.tbl:not(.sm) tbody td::before{content:attr(data-label);color:#8e8e93;font-size:13px;text-align:left;flex:none;max-width:45%}
+  table.tbl:not(.sm) tbody td[data-label=""]::before{display:none}
+  table.tbl:not(.sm) tbody td[data-label=""]{justify-content:flex-start}
+  table.tbl:not(.sm) tbody td[colspan]{justify-content:center;text-align:center}
+  table.tbl:not(.sm) tbody tr.grp{background:none;padding:14px 4px 6px;margin:0}
+  table.tbl:not(.sm) tbody tr.grp td{background:none;color:#6d6d72;font-size:13px;font-weight:600;border:0;padding:0;justify-content:flex-start;text-align:left}
+  table.tbl:not(.sm) .score{min-width:0;width:58%}
+  table.tbl:not(.sm) .bar{flex:1}
 }
 </style>
 </head>
@@ -186,7 +264,7 @@ code.url{display:block;background:#f1f5f9;padding:8px;border-radius:8px;font-siz
     <p class="sub">หน่วยกายภาพบำบัด โรงพยาบาลเขื่องใน</p>
     <div id="lgMsg"></div>
     <div id="paneLogin">
-      <div class="fld"><label>ชื่อผู้ใช้</label><input id="luser" autocomplete="username" onkeydown="if(event.key=='Enter')doLogin()"></div>
+      <div class="fld"><label>ชื่อผู้ใช้</label><input id="luser" autocomplete="username" autocapitalize="none" onkeydown="if(event.key=='Enter')doLogin()"></div>
       <div class="fld"><label>รหัสผ่าน</label><input id="lpass" type="password" autocomplete="current-password" onkeydown="if(event.key=='Enter')doLogin()"></div>
       <button class="btn primary" style="width:100%" onclick="doLogin()">เข้าสู่ระบบ</button>
       <p style="text-align:center;margin-top:12px;font-size:.85rem">
@@ -197,20 +275,20 @@ code.url{display:block;background:#f1f5f9;padding:8px;border-radius:8px;font-siz
           <input id="cfgGasUrl" placeholder="วางลิงก์ https://script.google.com/.../exec" style="font-size:.78rem;padding:6px 8px">
           <button class="btn sm primary" onclick="saveGasUrlBtn()">บันทึก</button>
         </div>
-        <small class="muted" style="font-size:.7rem;display:block;margin-top:4px">หรือใส่ค่าในตัวแปร <code>GAS_API_URL</code> ในไฟล์ index.html เพื่อไม่ต้องตั้งค่าซ้ำ</small>
+        <small class="muted" style="font-size:.7rem;display:block;margin-top:4px">หรือใส่ค่าในตัวแปร <code>GAS_API_URL</code> ในไฟล์ index.html</small>
       </div>
     </div>
     <div id="paneReg" class="hide">
-      <div class="fld"><label>ชื่อ-สกุล *</label><input id="rname"></div>
+      <div class="fld"><label>ชื่อ-สกุล *</label><input id="rname" maxlength="100"></div>
       <div class="fld"><label>ตำแหน่ง *</label>
         <select id="rpos"><option>นักกายภาพบำบัด</option><option>ผู้ช่วยนักกายภาพบำบัด</option></select></div>
       <div class="grid2">
-        <div class="fld"><label>ชื่อผู้ใช้ * (a-z, 0-9)</label><input id="ruser" autocomplete="off"></div>
+        <div class="fld"><label>ชื่อผู้ใช้ * (a-z, 0-9)</label><input id="ruser" autocomplete="off" autocapitalize="none" maxlength="30"></div>
         <div class="fld"><label>รหัสผ่าน * (≥6 ตัว)</label><input id="rpass" type="password" autocomplete="new-password"></div>
       </div>
       <div class="grid2">
-        <div class="fld"><label>เลข ก.</label><input id="rlic"></div>
-        <div class="fld"><label>เบอร์โทร</label><input id="rphone" inputmode="tel" onkeydown="if(event.key=='Enter')doRegister()"></div>
+        <div class="fld"><label>เลข ก.</label><input id="rlic" maxlength="30"></div>
+        <div class="fld"><label>เบอร์โทร</label><input id="rphone" inputmode="tel" maxlength="20" onkeydown="if(event.key=='Enter')doRegister()"></div>
       </div>
       <button class="btn primary" style="width:100%;margin-top:4px" onclick="doRegister()">ลงทะเบียน</button>
       <p style="text-align:center;margin-top:12px;font-size:.85rem">
@@ -220,9 +298,11 @@ code.url{display:block;background:#f1f5f9;padding:8px;border-radius:8px;font-siz
 </div>
 
 <div id="mobHeader" class="hide">
-  <div class="m-brand">🏥 PT Digital Center</div>
-  <button class="m-btn" onclick="toggleMobMenu()">☰ เมนู</button>
+  <button class="m-btn" onclick="toggleMobMenu()" aria-label="เมนู">☰</button>
+  <div class="m-brand" id="mobTitle">หน้าหลัก</div>
+  <img id="mobAvatar" class="m-av" alt="โปรไฟล์" onclick="goPage('profile')">
 </div>
+<div id="sideMask" onclick="toggleMobMenu(true)"></div>
 
 <div id="app" class="hide">
   <aside id="side">
@@ -232,12 +312,13 @@ code.url{display:block;background:#f1f5f9;padding:8px;border-radius:8px;font-siz
     <div class="nav-item" data-p="person" onclick="goPage('person')"><span class="nav-ico">👥</span>ทะเบียนบุคลากร</div>
     <div class="nav-item" data-p="expiry" onclick="goPage('expiry')">
       <span class="nav-ico">⏰</span>ใบประกอบใกล้หมดอายุ<span id="expBadge" class="nav-badge hide">0</span></div>
+    <div class="nav-item" data-p="profile" onclick="goPage('profile')"><span class="nav-ico">👤</span>โปรไฟล์ของฉัน</div>
     <div class="admin-only hide">
       <div class="nav-sep"></div>
       <div class="nav-cap">ผู้ดูแลระบบ</div>
       <div class="nav-item" data-p="users" onclick="goPage('users')"><span class="nav-ico">🔐</span>จัดการผู้ใช้<span id="pendBadge" class="nav-badge hide">0</span></div>
       <div class="nav-item" data-p="logs" onclick="goPage('logs')"><span class="nav-ico">📜</span>ประวัติการใช้งาน</div>
-      <div class="nav-item" data-p="settings" onclick="goPage('settings')"><span class="nav-ico">🛠️</span>ตั้งค่าระบบอัจฉริยะ</div>
+      <div class="nav-item" data-p="settings" onclick="goPage('settings')"><span class="nav-ico">🛠️</span>ตั้งค่าระบบ</div>
       <div class="nav-item" data-p="mods" onclick="goPage('mods')"><span class="nav-ico">⚙️</span>ตั้งค่าโมดูล</div>
     </div>
     <div class="nav-sep"></div>
@@ -249,7 +330,7 @@ code.url{display:block;background:#f1f5f9;padding:8px;border-radius:8px;font-siz
     <section id="page-home" class="page on">
       <div class="page-head"><h2>🏠 ภาพรวมระบบ</h2>
         <div class="head-tools">
-          <button class="btn" onclick="previewMonthlyReport()">📄 พรีวิวรายงานประจำเดือน</button>
+          <button class="btn" onclick="previewMonthlyReport()">📄 พรีวิวรายงาน</button>
           <button class="btn" onclick="loadBoot()">↻ รีเฟรช</button>
         </div></div>
       <div id="greet"></div>
@@ -280,7 +361,7 @@ code.url{display:block;background:#f1f5f9;padding:8px;border-radius:8px;font-siz
       </div>
       <div class="table-wrap"><table class="tbl">
         <thead><tr><th style="width:56px">รหัส</th><th>ตัวชี้วัด</th><th style="width:86px" class="ct">เป้าหมาย</th>
-          <th style="width:125px" class="rt">ผลงาน YTD / แนวโน้ม</th><th style="width:160px">ความสำเร็จ</th><th style="width:110px">ผู้รับผิดชอบ</th>
+          <th style="width:125px" class="rt">ผลงาน YTD</th><th style="width:160px">ความสำเร็จ</th><th style="width:110px">ผู้รับผิดชอบ</th>
           <th style="width:195px">จัดการ</th></tr></thead>
         <tbody id="kpiBody"></tbody></table></div>
     </section>
@@ -299,10 +380,10 @@ code.url{display:block;background:#f1f5f9;padding:8px;border-radius:8px;font-siz
     </section>
 
     <section id="page-expiry" class="page">
-      <div class="page-head"><h2>⏰ ใบประกอบวิชาชีพใกล้หมดอายุ</h2>
+      <div class="page-head"><h2>⏰ ใบประกอบใกล้หมดอายุ</h2>
         <div class="head-tools">
           <button class="btn" onclick="refreshExpiry()">↻ รีเฟรช</button>
-          <button class="btn" onclick="copyExpiryText()">📋 คัดลอกข้อความ</button>
+          <button class="btn" onclick="copyExpiryText()">📋 คัดลอก</button>
           <button class="btn line" onclick="shareToLine()">📤 แชร์เข้าไลน์</button>
         </div></div>
       <div id="expiryStat" class="stats-grid" style="margin-bottom:14px"></div>
@@ -333,7 +414,7 @@ code.url{display:block;background:#f1f5f9;padding:8px;border-radius:8px;font-siz
     </section>
 
     <section id="page-settings" class="page">
-      <div class="page-head"><h2>🛠️ ตั้งค่าระบบอัจฉริยะ</h2>
+      <div class="page-head"><h2>🛠️ ตั้งค่าระบบ</h2>
         <div class="head-tools"><button class="btn primary" onclick="saveSettingsForm()">💾 บันทึกการตั้งค่า</button></div></div>
       <div class="set-grid">
         <div class="panel">
@@ -347,17 +428,17 @@ code.url{display:block;background:#f1f5f9;padding:8px;border-radius:8px;font-siz
             <button class="btn sm" onclick="copyWebhook()">📋 คัดลอก Webhook</button>
             <button class="btn sm" onclick="adminAct('testLine')">🧪 ทดสอบส่ง</button>
           </div>
-          <p class="hint" style="margin-top:10px">ขณะนี้ระบบ LINE ถูกปิดไว้ (วางโครงไว้ก่อน) เมื่อพร้อมใช้จริง ให้เปิด LINE_ENABLED = true ใน Code.gs แล้ว Deploy ใหม่</p>
+          <p class="hint" style="margin-top:10px">ขณะนี้ระบบ LINE ถูกปิดไว้ เมื่อพร้อมใช้จริง ให้เปิด LINE_ENABLED = true ใน Code.gs แล้ว Deploy ใหม่</p>
         </div>
         <div class="panel">
           <h4>🤖 AI สรุป KPI & โค้ช CQI/R2R (Gemini) <span id="stGemini"></span></h4>
           <div class="fld"><label>Gemini API Key</label><input id="sGemini" type="password" autocomplete="off"></div>
-          <p class="hint">ขอได้ที่ aistudio.google.com · ส่งเฉพาะตัวเลข KPI ไม่มีข้อมูลส่วนบุคคล</p>
+          <p class="hint">ขอได้ที่ aistudio.google.com · ส่งเฉพาะรหัส ชื่อ และตัวเลข KPI ไม่ส่งชื่อบุคลากร</p>
           <div class="btn-row"><button class="btn sm ai" onclick="runAI()">✨ วิเคราะห์ KPI ตอนนี้</button></div>
         </div>
         <div class="panel">
           <h4>📧 รายงานประจำเดือน (PDF) <span id="stQuota" class="tag"></span></h4>
-          <div class="fld"><label>อีเมลผู้รับ (คั่นด้วย ,)</label><input id="sEmails" placeholder="head@example.com, qa@example.com"></div>
+          <div class="fld"><label>อีเมลผู้รับ (คั่นด้วย ,)</label><input id="sEmails" placeholder="อีเมลผู้รับ คั่นด้วยเครื่องหมายจุลภาค" autocapitalize="none"></div>
           <p class="hint">ส่งอัตโนมัติทุกวันที่ 1 เวลา 08:00 น. (มีบทวิเคราะห์ AI ถ้าตั้งค่า Gemini ไว้)</p>
           <div class="btn-row">
             <button class="btn sm" onclick="previewMonthlyReport()">👁️ ดูตัวอย่าง / พิมพ์</button>
@@ -365,10 +446,10 @@ code.url{display:block;background:#f1f5f9;padding:8px;border-radius:8px;font-siz
           </div>
         </div>
         <div class="panel">
-          <h4>⭐ เกณฑ์คะแนน PTCEU & ลิงก์ระบบ Hybrid</h4>
-          <div class="fld"><label>คะแนนที่ต้องสะสมก่อนต่ออายุ</label><input id="sTarget" type="number" min="1"></div>
-          <div class="fld"><label>ลิงก์หน้าเว็บ GitHub Pages (ถ้ามี)</label><input id="sFrontendUrl" placeholder="https://yourname.github.io/pt-center/"></div>
-          <p class="hint">หากใส่ลิงก์ GitHub Pages ระบบจะแนบลิงก์นี้ในอีเมลและไลน์แจ้งเตือนแทนลิงก์ /exec ยาวๆ</p>
+          <h4>⭐ เกณฑ์คะแนน PTCEU & ลิงก์ระบบ</h4>
+          <div class="fld"><label>คะแนนที่ต้องสะสมก่อนต่ออายุ</label><input id="sTarget" type="number" min="1" inputmode="numeric"></div>
+          <div class="fld"><label>ลิงก์หน้าเว็บ GitHub Pages (ถ้ามี)</label><input id="sFrontendUrl" placeholder="https://yourname.github.io/pt-center/" autocapitalize="none"></div>
+          <p class="hint">หากใส่ลิงก์ GitHub Pages ระบบจะแนบลิงก์นี้ในอีเมลและไลน์แจ้งเตือนแทนลิงก์ /exec</p>
         </div>
         <div class="panel">
           <h4>⏱️ งานอัตโนมัติ & สำรองข้อมูล</h4>
@@ -416,6 +497,14 @@ code.url{display:block;background:#f1f5f9;padding:8px;border-radius:8px;font-siz
   </main>
 </div>
 
+<nav id="tabBar" class="hide" aria-label="เมนูหลัก">
+  <button data-t="home" onclick="goPage('home')"><span class="ti">🏠</span>หน้าหลัก</button>
+  <button data-t="kpi" onclick="goPage('kpi')"><span class="ti">🎯</span>KPI</button>
+  <button data-t="person" onclick="goPage('person')"><span class="ti">👥</span>บุคลากร</button>
+  <button data-t="expiry" onclick="goPage('expiry')"><span class="ti">⏰</span>ใบประกอบ<span id="tabExpBadge" class="tb-badge hide">0</span></button>
+  <button data-t="profile" onclick="goPage('profile')"><span class="ti">👤</span>ฉัน</button>
+</nav>
+
 <div id="userDock" class="user-dock hide" onclick="toggleDock()">
   <img id="dockImg" class="dock-avatar" alt="">
   <span id="dockName" class="dock-name"></span>
@@ -434,18 +523,15 @@ code.url{display:block;background:#f1f5f9;padding:8px;border-radius:8px;font-siz
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script>
-/* ===== ตั้งค่า HYBRID MODE (รองรับทั้ง Apps Script และ GitHub Pages) =====
- * วิธีใช้งานบน GitHub Pages:
- * 1) นำลิงก์ Web App (ที่ลงท้ายด้วย /exec จากการ Deploy ใน Apps Script) มาวางใน GAS_API_URL ด้านล่าง
- * 2) หรือหากปล่อยว่างไว้ สามารถวางลิงก์ผ่านช่องตั้งค่าหน้าล็อกอิน หรือเปิดผ่าน ?api=https://.../exec ได้เช่นกัน
- */
 var GAS_API_URL = 'https://script.google.com/macros/s/AKfycbx20_L_a01MRmrUeaHh4PgVklj-bObTcx0iLak5Y1RGJFw7o1I2dj4P68fN1beSiwHmrw/exec';
 var IS_GAS = (typeof google !== 'undefined' && google.script && google.script.run);
+var CLIENT_VERSION = 'v1.4.9';
+var API_TIMEOUT_MS = 120000;
 
 var TOKEN = '', ME = null, BOOT = null, LBL = { license:'เลข ก.', score:'PTCEU' };
 var WEB_APP_URL = '', PTCEU_TARGET = 50, HIDE_LIC = false;
-var KPI_CACHE = null, KPI_FILTER = 'all', PERSON_CACHE = [], MOD_CACHE = [], EXPIRY_CACHE = [], USER_CACHE = [], LOG_CACHE = [];
-var KPI_CHART = null, EXPIRED_HANDLED = false, LAST_ERR_TS = 0;
+var KPI_CACHE = null, KPI_FILTER = 'all', KPI_REQ = 0, PERSON_CACHE = [], MOD_CACHE = [], EXPIRY_CACHE = [], USER_CACHE = [], LOG_CACHE = [];
+var KPI_CHART = null, EXPIRED_HANDLED = false, LAST_ERR_TS = 0, MOD_DIRTY = false, FORM_DIRTY = false;
 var POS = ['นักกายภาพบำบัด','ผู้ช่วยนักกายภาพบำบัด'], PTA = POS[1];
 var STATUSES = ['ปฏิบัติงาน','ลาศึกษาต่อ','โอน/ย้าย','ลาออก','รออนุมัติ'];
 var TH_M = ['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
@@ -457,6 +543,8 @@ var LOG_LABEL = { LOGIN:'เข้าสู่ระบบ', LOGIN_FAIL:'รห�
 var TRIG_LABEL = { dailyJob:'แจ้งเตือนทุกวัน 08:00', weeklyBackup:'สำรองข้อมูลทุกวันอาทิตย์',
   monthlyReport:'รายงานทุกวันที่ 1', cleanupLogs:'เก็บกวาด Log ทุกวันที่ 2' };
 var YTD_LABEL = { last:'ค่าเดือนล่าสุด', sum:'ผลรวมทั้งปี', avg:'ค่าเฉลี่ยรายเดือน' };
+var PAGE_TITLE = { home:'หน้าหลัก', kpi:'ตัวชี้วัด KPI', person:'บุคลากร', expiry:'ใบประกอบวิชาชีพ', users:'จัดการผู้ใช้',
+  logs:'ประวัติการใช้งาน', settings:'ตั้งค่าระบบ', mods:'ตั้งค่าโมดูล', profile:'โปรไฟล์ของฉัน' };
 
 function $(id){ return document.getElementById(id); }
 function esc(s){ return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
@@ -473,9 +561,22 @@ function thDate(s){
   if (isNaN(y) || mIdx < 0 || mIdx > 11) return esc(s);
   return Number(p[2]) + ' ' + TH_M[mIdx] + ' ' + y;
 }
-function thDateTime(s){ if (!s) return '-'; var a = String(s).split(' '); return thDate(a[0]) + (a[1] ? ' ' + a[1] + ' น.' : ''); }
+function thDateTime(s){ if (!s) return '-'; var a = String(s).split(' '); return thDate(a[0]) + (a[1] ? ' ' + esc(a[1]) + ' น.' : ''); }
 function dash(v){ return (v === '-' || v == null) ? '' : v; }
 function fld(label, input){ return '<div class="fld"><label>' + label + '</label>' + input + '</div>'; }
+
+/* ใส่ชื่อคอลัมน์ให้แต่ละช่อง เพื่อแสดงเป็นการ์ดบนมือถือ */
+function labelize(tbodyId){
+  var tb = $(tbodyId); if (!tb) return;
+  var tbl = tb.closest ? tb.closest('table') : tb.parentNode;
+  var labels = Array.prototype.map.call(tbl ? tbl.querySelectorAll('thead th') : [], function(t){ return t.textContent.trim(); });
+  Array.prototype.forEach.call(tb.rows, function(tr){
+    if (tr.cells.length === 1 && tr.cells[0].colSpan > 1) return;
+    Array.prototype.forEach.call(tr.cells, function(td, i){
+      if (!td.hasAttribute('data-label')) td.setAttribute('data-label', labels[i] || '');
+    });
+  });
+}
 
 function getGasUrl(){
   if (GAS_API_URL) return GAS_API_URL.trim();
@@ -491,21 +592,18 @@ function getGasUrl(){
 function saveGasUrlBtn(){
   var u = ($('cfgGasUrl').value || '').trim();
   if (!/^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec/i.test(u)){
-    return lgMsg('ลิงก์ไม่ถูกต้อง ต้องเป็นลิงก์ Web App ที่ขึ้นต้นด้วย https://script.google.com/macros/s/... และลงท้ายด้วย /exec');
+    return lgMsg('ลิงก์ไม่ถูกต้อง ต้องขึ้นต้นด้วย https://script.google.com/macros/s/... และลงท้ายด้วย /exec');
   }
   localStorage.setItem('pt_gas_url', u);
   lgMsg('บันทึกลิงก์เชื่อมต่อฐานข้อมูลเรียบร้อย สามารถเข้าสู่ระบบได้เลย', true);
 }
 
-/* Global Error Boundary: ดักจับ Error ฝั่งหน้าเว็บและแจ้งบันทึกในระบบอัตโนมัติ */
 function reportClientErr(msg, src){
   var now = Date.now();
   if (now - LAST_ERR_TS < 15000) return;
   LAST_ERR_TS = now;
   try {
-    if (IS_GAS || getGasUrl()){
-      api('logClientError', TOKEN, String(msg || ''), String(src || '')).catch(function(){});
-    }
+    if (IS_GAS || getGasUrl()) api('logClientError', TOKEN, String(msg || ''), String(src || '')).catch(function(){});
   } catch(e){}
 }
 window.addEventListener('error', function(ev){
@@ -516,12 +614,16 @@ window.addEventListener('unhandledrejection', function(ev){
   var m = (r && r.message) ? r.message : String(r || '');
   if (m && m.indexOf('SESSION_EXPIRED') === -1) reportClientErr('Promise: ' + m, 'async');
 });
+window.addEventListener('beforeunload', function(ev){
+  if ((FORM_DIRTY && $('mask').classList.contains('on')) || MOD_DIRTY){ ev.preventDefault(); ev.returnValue = ''; }
+});
 
 function toggleMobMenu(forceClose){
-  var s = $('side');
+  var s = $('side'), m = $('sideMask');
   if (!s) return;
-  if (forceClose) s.classList.remove('mob-open');
-  else s.classList.toggle('mob-open');
+  var open = forceClose ? false : !s.classList.contains('mob-open');
+  s.classList.toggle('mob-open', open);
+  if (m) m.classList.toggle('on', open);
 }
 
 function avatarOf(name, url){
@@ -542,7 +644,7 @@ function skel(tbodyId, cols, n){
   var h = '';
   for (var i = 0; i < (n || 5); i++){
     h += '<tr>';
-    for (var j = 0; j < cols; j++) h += '<td><div class="skel" style="width:' + (45 + ((i*7 + j*13) % 50)) + '%"></div></td>';
+    for (var j = 0; j < cols; j++) h += '<td><div class="skel" style="width:' + (45 + ((i*7 + j*13) % 50)) + '%;min-width:60px"></div></td>';
     h += '</tr>';
   }
   $(tbodyId).innerHTML = h;
@@ -555,12 +657,19 @@ function openModal(title, body, foot, wide){
   $('mTitle').innerHTML = title; $('mBody').innerHTML = body;
   $('mFoot').innerHTML = foot || '<button class="btn" onclick="closeModal()">ปิด</button>';
   $('mBox').classList.toggle('wide', !!wide);
+  FORM_DIRTY = false;
+  $('mBody').oninput = function(){ FORM_DIRTY = true; };
+  $('mBody').onchange = function(){ FORM_DIRTY = true; };
   $('mask').classList.add('on');
 }
-function closeModal(){ if (KPI_CHART){ KPI_CHART.destroy(); KPI_CHART = null; } $('mask').classList.remove('on'); }
-/* Hybrid API Connector:
-   - ถ้าเปิดบน Apps Script → ใช้ google.script.run (เร็ว ไม่ต้องตั้งค่า URL)
-   - ถ้าเปิดบน GitHub Pages / ภายนอก → ใช้ fetch POST (text/plain เลี่ยง CORS Preflight) */
+/* closeModal(true) = ปิดทันที (หลังบันทึกสำเร็จ), ไม่ส่งค่า = ถามยืนยันถ้ามีการแก้ค้าง */
+function closeModal(force){
+  if (!force && FORM_DIRTY && !confirm('มีข้อมูลที่แก้ไขแต่ยังไม่ได้บันทึก ต้องการปิดฟอร์มนี้หรือไม่?')) return;
+  FORM_DIRTY = false;
+  if (KPI_CHART){ KPI_CHART.destroy(); KPI_CHART = null; }
+  $('mask').classList.remove('on');
+}
+
 function api(name){
   var args = Array.prototype.slice.call(arguments, 1);
   if (IS_GAS){
@@ -569,6 +678,7 @@ function api(name){
         if (String(e && e.message).indexOf('SESSION_EXPIRED') > -1) sessionExpired();
         reject(e);
       });
+      if (typeof r[name] !== 'function') return reject(new Error('ไม่พบฟังก์ชัน ' + name + ' บนเซิร์ฟเวอร์'));
       r[name].apply(r, args);
     });
   }
@@ -578,15 +688,22 @@ function api(name){
       var box = $('apiCfgBox'); if (box) box.classList.remove('hide');
       return reject(new Error('กรุณาตั้งค่าลิงก์ Web App (/exec) ก่อนใช้งานบน GitHub Pages'));
     }
+    var ctrl = (typeof AbortController !== 'undefined') ? new AbortController() : null;
+    var timer = setTimeout(function(){ if (ctrl) ctrl.abort(); }, API_TIMEOUT_MS);
     fetch(url, {
       method:'POST',
       headers:{ 'Content-Type':'text/plain;charset=utf-8' },
       body:JSON.stringify({ rpc:name, args:args }),
-      redirect:'follow'
+      redirect:'follow',
+      signal: ctrl ? ctrl.signal : undefined
     }).then(function(res){
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      return res.json();
-    }).then(function(j){
+      if (!res.ok) throw new Error('เซิร์ฟเวอร์ตอบกลับ HTTP ' + res.status);
+      return res.text();
+    }).then(function(txt){
+      clearTimeout(timer);
+      var j;
+      try { j = JSON.parse(txt); }
+      catch(e){ throw new Error('เซิร์ฟเวอร์ไม่ได้ตอบกลับเป็น JSON — ตรวจสอบว่า Deploy แบบ "Anyone" และใช้ลิงก์ /exec ของเวอร์ชันล่าสุด'); }
       if (!j || j.__rpc_ok !== true){
         var errMsg = (j && j.error) || 'การเชื่อมต่อขัดข้อง';
         if (String(errMsg).indexOf('SESSION_EXPIRED') > -1) sessionExpired();
@@ -594,6 +711,9 @@ function api(name){
       }
       resolve(j.data);
     }).catch(function(err){
+      clearTimeout(timer);
+      if (err && err.name === 'AbortError') err = new Error('เซิร์ฟเวอร์ตอบช้าเกินไป กรุณาลองใหม่อีกครั้ง');
+      else if (err && /Failed to fetch|NetworkError|Load failed/i.test(String(err.message))) err = new Error('เชื่อมต่อเซิร์ฟเวอร์ไม่ได้ ตรวจสอบอินเทอร์เน็ต');
       reject(err);
     });
   });
@@ -601,6 +721,7 @@ function api(name){
 function fail(e){ spin(0); if (String(e && e.message).indexOf('SESSION_EXPIRED') > -1) return; toast((e && e.message) || 'เกิดข้อผิดพลาดในการเชื่อมต่อ'); }
 function sessionExpired(){
   if (EXPIRED_HANDLED) return; EXPIRED_HANDLED = true;
+  FORM_DIRTY = false; MOD_DIRTY = false;
   localStorage.removeItem('pt_token');
   localStorage.removeItem('pt_boot_cache');
   toast('หมดเวลาการใช้งาน หรือบัญชีถูกเปลี่ยนสิทธิ์ กรุณาเข้าสู่ระบบใหม่');
@@ -609,22 +730,34 @@ function sessionExpired(){
 function adminAct(name, confirmMsg, after){
   if (confirmMsg && !confirm(confirmMsg)) return;
   spin(1);
-  api(name, TOKEN).then(function(r){ spin(0); toast(r.msg); if (after) after(r); }).catch(fail);
+  api(name, TOKEN).then(function(r){ spin(0); toast((r && r.msg) || 'เรียบร้อย'); if (after) after(r); }).catch(fail);
 }
 
-/* CSV Download Helper (UTF-8 BOM เพื่อเปิดใน Excel ภาษาไทยไม่เพี้ยน) */
 function downloadCsv(filename, headers, rows){
   var escCsv = function(v){
-    var s = String(v == null ? '' : v).replace(/"/g, '""');
+    var s = String(v == null ? '' : v);
+    if (/^[=+\-@\t\r]/.test(s) && isNaN(Number(s))) s = "'" + s;
+    s = s.replace(/"/g, '""');
     return /[",\n\r]/.test(s) ? '"' + s + '"' : s;
   };
   var lines = [headers.map(escCsv).join(',')];
   rows.forEach(function(r){ lines.push(r.map(escCsv).join(',')); });
   var blob = new Blob(['\uFEFF' + lines.join('\r\n')], { type:'text/csv;charset=utf-8;' });
+  var href = URL.createObjectURL(blob);
   var a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = filename;
+  a.href = href; a.download = filename;
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(function(){ URL.revokeObjectURL(href); }, 2000);
+}
+function copyText(text, okMsg){
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){ toast(okMsg); }).catch(function(){ fallbackCopy(text, okMsg); });
+  } else fallbackCopy(text, okMsg);
+}
+function fallbackCopy(text, okMsg){
+  var ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); toast(okMsg); } catch(e){ toast('คัดลอกไม่สำเร็จ'); }
+  document.body.removeChild(ta);
 }
 
 function togglePane(reg){ $('paneLogin').classList.toggle('hide', !!reg); $('paneReg').classList.toggle('hide', !reg); $('lgMsg').innerHTML = ''; }
@@ -634,6 +767,7 @@ function showApp(){
   $('mobHeader').classList.remove('hide');
   $('app').classList.remove('hide');
   $('userDock').classList.remove('hide');
+  $('tabBar').classList.remove('hide');
   loadBoot();
 }
 
@@ -643,7 +777,7 @@ function doLogin(){
   spin(1);
   api('login', u, p).then(function(r){
     spin(0);
-    if (!r.ok) return lgMsg(r.msg);
+    if (!r || !r.ok) return lgMsg((r && r.msg) || 'เข้าสู่ระบบไม่สำเร็จ');
     TOKEN = r.token; ME = r.user; EXPIRED_HANDLED = false;
     localStorage.setItem('pt_token', TOKEN);
     $('lpass').value = '';
@@ -662,10 +796,17 @@ function doRegister(){
   }).catch(function(e){ spin(0); lgMsg(e.message); });
 }
 function doLogout(){
-  try { api('logout', TOKEN).catch(function(){}); } catch(e){}
-  localStorage.removeItem('pt_token');
-  localStorage.removeItem('pt_boot_cache');
-  location.reload();
+  var finished = false;
+  var done = function(){
+    if (finished) return; finished = true;
+    FORM_DIRTY = false; MOD_DIRTY = false;
+    localStorage.removeItem('pt_token');
+    localStorage.removeItem('pt_boot_cache');
+    location.reload();
+  };
+  spin(1);
+  setTimeout(done, 4000);
+  api('logout', TOKEN).then(done).catch(done);
 }
 window.addEventListener('load', function(){
   if (!IS_GAS && !GAS_API_URL){
@@ -679,7 +820,9 @@ window.addEventListener('load', function(){
   api('ping', t).then(function(me){
     if (!me){ localStorage.removeItem('pt_token'); return; }
     TOKEN = t; ME = me; showApp();
-  }).catch(function(){ localStorage.removeItem('pt_token'); });
+  }).catch(function(e){
+    lgMsg('ยังเชื่อมต่อเซิร์ฟเวอร์ไม่ได้: ' + ((e && e.message) || '') + ' — ลองรีเฟรชหน้าอีกครั้ง');
+  });
 });
 
 function goPage(p){
@@ -691,6 +834,8 @@ function goPage(p){
   ['home','kpi','person','expiry','users','logs','settings','mods','profile'].forEach(function(x){
     var el = $('page-' + x); if (el) el.classList.toggle('on', x === p); });
   document.querySelectorAll('.nav-item').forEach(function(n){ n.classList.toggle('active', n.getAttribute('data-p') === p); });
+  document.querySelectorAll('#tabBar button').forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-t') === p); });
+  if ($('mobTitle')) $('mobTitle').textContent = PAGE_TITLE[p] || 'PT Center';
   $('userDock').classList.remove('open');
   toggleMobMenu(true);
   if (p === 'kpi' && !KPI_CACHE) loadKPI();
@@ -718,6 +863,10 @@ function loadBoot(){
     spin(0); applyBoot(d);
     var s = JSON.parse(JSON.stringify(d)); delete s.me; s.owner = ME.userId;
     try { localStorage.setItem('pt_boot_cache', JSON.stringify(s)); } catch(e){}
+    if (d.version && d.version !== CLIENT_VERSION && !window._verWarned){
+      window._verWarned = true;
+      toast('⚠️ หน้าเว็บ ' + CLIENT_VERSION + ' ไม่ตรงกับเซิร์ฟเวอร์ ' + d.version + ' — อัปเดต index.html ให้ตรงกัน');
+    }
   }).catch(function(e){ spin(0); fail(e); });
 }
 function applyBoot(d){
@@ -752,10 +901,9 @@ function openMod(el){
   var u = el.getAttribute('data-url');
   if (u.charAt(0) === '#'){
     if ($('page-' + u.slice(1))) goPage(u.slice(1)); else toast('ไม่พบหน้า "' + u + '" ในระบบ ตรวจสอบลิงก์โมดูล');
-  } else window.open(u, '_blank', 'noopener');
+  } else if (/^https:\/\//i.test(u)) window.open(u, '_blank', 'noopener');
 }
 
-/* Smart Assistant Banner: แจ้งเตือนสิ่งที่ต้องทำเฉพาะบุคคล */
 function paintSmartBanner(d){
   var chips = [], s = d.stats || {}, K = d.kpi || {};
   if (ME){
@@ -800,7 +948,7 @@ function paintHome(d){
     statCard('ผู้ช่วยนักกายภาพฯ', s.pta || 0, '#8b5cf6', 'คน') +
     statCard('ใบประกอบใกล้หมดอายุ', s.expSoon || 0, '#f59e0b', 'ภายใน 180 วัน', "goPage('expiry')") +
     statCard('หมดอายุแล้ว', s.expired || 0, '#ef4444', 'ต้องต่ออายุ', "goPage('expiry')") +
-    statCard(LBL.score + ' ยังไม่ถึงเป้าหมาย', s.lowScore || 0, '#f97316', 'เป้าหมาย ' + PTCEU_TARGET + ' คะแนน', "goPage('person')") +
+    statCard(esc(LBL.score) + ' ยังไม่ถึงเป้าหมาย', s.lowScore || 0, '#f97316', 'เป้าหมาย ' + PTCEU_TARGET + ' คะแนน', "goPage('person')") +
     (ME && ME.role === 'admin' ? statCard('รออนุมัติ', s.pending || 0, '#94a3b8', 'บัญชีใหม่', "goPage('users')") : '');
   paintAI(d);
 
@@ -825,7 +973,12 @@ function paintHome(d){
     '<div class="two-col"><div class="panel"><h4>ผลตามกลุ่มยุทธศาสตร์ (ปี ' + esc(K.current || '-') + ')</h4>' + grp + '</div>' +
     '<div class="panel"><h4>⚠️ ตัวชี้วัดที่ต้องเร่งแก้ไข</h4>' + risk + '</div></div>';
 }
-function openKpiYear(y){ KPI_CACHE = null; goPage('kpi'); $('kpiYear').value = y; loadKPI(); }
+function openKpiYear(y){
+  KPI_CACHE = null;
+  var sel = $('kpiYear');
+  if (sel) sel.value = y;
+  goPage('kpi');
+}
 function paintAI(d){
   var adm = ME && ME.role === 'admin';
   if (!d.ai && !(adm && d.aiEnabled)){ $('aiBox').innerHTML = ''; return; }
@@ -846,7 +999,7 @@ function previewMonthlyReport(){
     if (!r || !r.ok) return toast('ไม่สามารถสร้างตัวอย่างรายงานได้');
     var foot = '<button class="btn" onclick="closeModal()">ปิด</button>' +
                '<button class="btn primary" onclick="printReportPreview()">🖨️ พิมพ์ / บันทึก PDF</button>';
-    openModal('📄 ตัวอย่างรายงานประจำเดือน', '<div id="repPreviewBox">' + r.html + '</div>', foot, true);
+    openModal('📄 ตัวอย่างรายงานประจำเดือน', '<div id="repPreviewBox" style="overflow-x:auto">' + r.html + '</div>', foot, true);
   }).catch(fail);
 }
 function printReportPreview(){
@@ -864,12 +1017,14 @@ function printReportPreview(){
 function toggleDock(){ $('userDock').classList.toggle('open'); }
 function paintDock(me){
   if (!me) return;
-  $('dockImg').src = avatarOf(me.fullName, me.photoUrl);
+  var av = avatarOf(me.fullName, me.photoUrl);
+  $('dockImg').src = av;
+  if ($('mobAvatar')) $('mobAvatar').src = av;
   $('dockName').textContent = me.fullName;
   var lic = me.position === PTA ? '' :
-    '<div>🪪 ' + LBL.license + ' : <b>' + (esc(me.licenseNo) || '-') + '</b></div>' +
+    '<div>🪪 ' + esc(LBL.license) + ' : <b>' + (esc(me.licenseNo) || '-') + '</b></div>' +
     '<div>📅 หมดอายุ : <b>' + thDate(me.licenseExpire) + '</b></div>' +
-    '<div style="margin:4px 0">⭐ ' + LBL.score + ' ' + scoreBar(me.licenseScore, me.position) + '</div>';
+    '<div style="margin:4px 0">⭐ ' + esc(LBL.score) + ' ' + scoreBar(me.licenseScore, me.position) + '</div>';
   $('dockDetail').innerHTML = '<div class="dk-h">' + esc(me.fullName) + '</div><div class="dk-s">' + esc(me.position) + '</div>' +
     '<div>👤 ผู้ใช้ : <b>' + esc(me.username) + '</b></div>' +
     '<div>🔑 สิทธิ์ : <b>' + (me.role === 'admin' ? 'ผู้ดูแลระบบ' : 'ผู้ใช้ทั่วไป') + '</b></div>' + lic +
@@ -878,20 +1033,24 @@ function paintDock(me){
 }
 function paintProfile(){
   var m = ME;
+  if (!m) return;
   var lic = m.position === PTA ? '' :
     '<div class="sec-t">ใบประกอบวิชาชีพ</div>' +
-    '<div>' + LBL.license + ': <b>' + (esc(m.licenseNo) || '-') + '</b></div>' +
+    '<div>' + esc(LBL.license) + ': <b>' + (esc(m.licenseNo) || '-') + '</b></div>' +
     '<div>วันหมดอายุ: <b>' + thDate(m.licenseExpire) + '</b></div>' +
-    '<div style="margin-top:6px">' + LBL.score + ': ' + scoreBar(m.licenseScore, m.position) + '</div>';
+    '<div style="margin-top:6px">' + esc(LBL.score) + ': ' + scoreBar(m.licenseScore, m.position) + '</div>';
   $('myProfile').innerHTML = '<div style="text-align:center"><img class="pv-photo" style="margin:0 auto;width:100px;height:100px;border-radius:50%" src="' +
-    esc(avatarOf(m.fullName, m.photoUrl)) + '"><h3 style="margin-top:6px">' + esc(m.fullName) + '</h3><p class="muted">' + esc(m.position) + '</p></div>' +
+    esc(avatarOf(m.fullName, m.photoUrl)) + '"><h3 style="margin-top:6px">' + esc(m.fullName) + '</h3><p class="muted">' + esc(m.position) +
+    ' · ' + (m.role === 'admin' ? 'ผู้ดูแลระบบ' : 'ผู้ใช้ทั่วไป') + '</p></div>' +
     lic + '<div class="sec-t">ข้อมูลส่วนตัว</div>' +
+    '<div>ชื่อผู้ใช้: <b>' + esc(m.username) + '</b></div>' +
     '<div>วันเริ่มงาน: <b>' + thDate(m.startDate) + '</b></div><div>เบอร์โทร: <b>' + (esc(m.phone) || '-') + '</b></div>' +
     '<div>อีเมล: <b>' + (esc(m.email) || '-') + '</b></div>' +
-    '<button class="btn primary" style="margin-top:12px;width:100%" onclick="openMyForm()">✏️ แก้ไขข้อมูลของฉัน</button>';
+    '<button class="btn primary" style="margin-top:12px;width:100%" onclick="openMyForm()">✏️ แก้ไขข้อมูลของฉัน</button>' +
+    '<button class="btn danger" style="margin-top:8px;width:100%" onclick="doLogout()">ออกจากระบบ</button>';
 }
 function openMyForm(){
-  if (ME.personnelId === 'PT-ADMIN') return toast('บัญชีผู้ดูแลระบบหลักไม่มีข้อมูลบุคลากรให้แก้ไข');
+  if (!ME || ME.personnelId === 'PT-ADMIN') return toast('บัญชีผู้ดูแลระบบหลักไม่มีข้อมูลบุคลากรให้แก้ไข');
   spin(1);
   api('listPersonnel', TOKEN).then(function(rows){ spin(0); PERSON_CACHE = rows || []; openPersonForm(ME.personnelId); }).catch(fail);
 }
@@ -909,8 +1068,9 @@ function doChangePw(){
 
 function paintExpiryFromBoot(r){
   EXPIRY_CACHE = r.rows || [];
-  var b = $('expBadge');
-  b.textContent = r.total || 0; b.classList.toggle('hide', !r.total);
+  var n = r.total || 0;
+  var b = $('expBadge'); b.textContent = n; b.classList.toggle('hide', !n);
+  var tb = $('tabExpBadge'); if (tb){ tb.textContent = n; tb.classList.toggle('hide', !n); }
   if ($('page-expiry').classList.contains('on')) renderExpiryView(r);
 }
 function loadExpiry(){ if (BOOT && BOOT.expiry) renderExpiryView(BOOT.expiry); else refreshExpiry(); }
@@ -936,10 +1096,11 @@ function renderExpiryView(r){
     return '<tr><td><img class="avatar" src="' + esc(avatarOf(p.fullName, p.photoUrl)) + '"></td><td><b>' + esc(p.fullName) + '</b></td><td>' + esc(p.position) + '</td>' +
       '<td>' + (esc(p.licenseNo) || '-') + '</td><td>' + scoreBar(p.licenseScore, p.position) + '</td><td>' + thDate(p.licenseExpire) + '</td>' +
       '<td>' + dayTxt + '</td><td>' + (esc(p.phone) || '-') + '</td><td>' + badge + '</td></tr>';
-  }).join('') || '<tr><td colspan="9" class="ct" style="color:#10b981;font-weight:700;padding:24px">✅ ทุกคนปลอดภัย ไม่มีใบประกอบใกล้หมดอายุ</td></tr>';
+  }).join('') || '<tr><td colspan="9" class="ct" style="color:#10b981;font-weight:700;padding:24px">✅ ไม่พบรายการใบประกอบใกล้หมดอายุภายใน 180 วัน</td></tr>';
+  labelize('expiryBody');
 }
 function buildExpiryText(){
-  if (!EXPIRY_CACHE.length) return '✅ ไม่มีผู้ที่ใบประกอบวิชาชีพใกล้หมดอายุในขณะนี้';
+  if (!EXPIRY_CACHE.length) return '✅ ไม่พบรายการใบประกอบวิชาชีพใกล้หมดอายุภายใน 180 วัน';
   var L = ['📋 รายชื่อผู้ที่ใบประกอบวิชาชีพใกล้หมดอายุ', '(ข้อมูล ณ ' + thDate(todayYmd()) + ')', ''];
   EXPIRY_CACHE.forEach(function(p, i){
     var st = p.days < 0 ? '❌ หมดอายุแล้ว ' + Math.abs(p.days) + ' วัน' : p.days === 0 ? '❗ หมดอายุวันนี้' : '⚠️ เหลือ ' + p.days + ' วัน';
@@ -952,16 +1113,6 @@ function buildExpiryText(){
   L.push('— ระบบ PT Digital Center —');
   return L.join('\n');
 }
-function copyText(text, okMsg){
-  if (navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(text).then(function(){ toast(okMsg); }).catch(function(){ fallbackCopy(text, okMsg); });
-  } else fallbackCopy(text, okMsg);
-}
-function fallbackCopy(text, okMsg){
-  var ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select();
-  try { document.execCommand('copy'); toast(okMsg); } catch(e){ toast('คัดลอกไม่สำเร็จ'); }
-  document.body.removeChild(ta);
-}
 function copyExpiryText(){ copyText(buildExpiryText(), 'คัดลอกข้อความแล้ว วางในไลน์ได้เลย'); }
 function shareToLine(){
   var a = document.createElement('a');
@@ -971,9 +1122,13 @@ function shareToLine(){
 }
 
 function syncKpiNow(){
-  if (!confirm('ดึงข้อมูล KPI ใหม่จากไฟล์ต้นทาง? (ข้อมูลที่แก้ในระบบ ยกเว้นหมายเหตุ จะถูกแทนที่)')) return;
+  if (!confirm('ดึงข้อมูล KPI ใหม่จากไฟล์ต้นทาง?\n• เดือนที่ไฟล์ต้นทางมีตัวเลข จะใช้ค่าจากไฟล์ต้นทาง\n• เดือนที่ไฟล์ต้นทางว่าง จะคงค่าที่บันทึกในระบบไว้\n• KPI ที่ไม่มีในไฟล์ต้นทางจะยังอยู่\n• เซลล์ที่จัดรูปแบบ % จะถูกแปลงเป็นร้อยละอัตโนมัติ\n(ข้อมูลเดิมถูกสำรองไว้ที่ชีต KPI_PREV)')) return;
   spin(1);
-  api('syncKPI', TOKEN).then(function(r){ spin(0); toast(r.msg); KPI_CACHE = null; loadBoot(); loadKPI(); }).catch(fail);
+  api('syncKPI', TOKEN).then(function(r){
+    spin(0); toast(r.msg);
+    if (r.ok && r.warnings && r.warnings.length) setTimeout(function(){ alert('ข้อสังเกตจากการซิงก์:\n• ' + r.warnings.join('\n• ')); }, 300);
+    KPI_CACHE = null; loadBoot(); loadKPI();
+  }).catch(fail);
 }
 function setKpiFilter(f){
   KPI_FILTER = f;
@@ -997,8 +1152,10 @@ function trendBadgeHtml(k){
 }
 function loadKPI(){
   var y = $('kpiYear').value || '';
+  var req = ++KPI_REQ;
   skel('kpiBody', 7, 6);
   api('listKPI', TOKEN, y).then(function(r){
+    if (req !== KPI_REQ) return;
     KPI_CACHE = r; fillYears(r.years, r.year);
     var s = r.summary || {};
     $('kpiHeadStat').innerHTML = statCard('ตัวชี้วัดทั้งหมด', s.total || 0, '#0ea5e9', '', "setKpiFilter('all')") +
@@ -1007,10 +1164,11 @@ function loadKPI(){
       statCard('รอรายงานผล', s.waiting || 0, '#94a3b8', '', "setKpiFilter('wait')") +
       statCard('ความสำเร็จเฉลี่ย', (s.avg || 0) + '%', '#10b981');
     renderKpiTable();
-  }).catch(fail);
+  }).catch(function(e){ if (req === KPI_REQ) fail(e); });
 }
 function renderKpiTable(){
   if (!KPI_CACHE) return;
+  document.querySelectorAll('#kpiPills .pill').forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-f') === KPI_FILTER); });
   var q = ($('kSearch').value || '').toLowerCase().trim();
   var adm = ME && ME.role === 'admin';
   var list = (KPI_CACHE.rows || []).filter(function(k){
@@ -1027,16 +1185,17 @@ function renderKpiTable(){
     var col = k.pass === null ? (k.hasData ? '#f59e0b' : '#cbd5e1') : (k.pass ? '#10b981' : '#ef4444');
     var bg = k.pass === null ? (k.hasData ? '<span class="bg amber">ไม่มีเกณฑ์</span>' : '<span class="bg gray">รอข้อมูล</span>') : (k.pass ? '<span class="bg green">ผ่าน</span>' : '<span class="bg red">ไม่ผ่าน</span>');
     var ytdCell = k.hasData
-      ? '<b>' + esc(k.ytd) + '</b>' + trendBadgeHtml(k) + (k.lastMonth ? '<div><small class="muted">ล่าสุด: ' + esc(k.lastMonth) + '</small></div>' : '')
+      ? '<span><b>' + esc(k.ytd) + '</b>' + trendBadgeHtml(k) + (k.lastMonth ? '<div><small class="muted">ล่าสุด: ' + esc(k.lastMonth) + '</small></div>' : '') + '</span>'
       : '<span class="muted">–</span>';
-    html += '<tr><td><b>' + esc(k.code) + '</b></td><td>' + esc(k.name) + (k.note ? '<div><small class="muted">💬 ' + esc(k.note) + '</small></div>' : '') + '</td><td class="ct">' + esc(k.target) + '</td>' +
+    html += '<tr><td><b>' + esc(k.code) + '</b></td><td><span>' + esc(k.name) + (k.note ? '<div><small class="muted">💬 ' + esc(k.note) + '</small></div>' : '') + '</span></td><td class="ct">' + esc(k.target) + '</td>' +
       '<td class="rt">' + ytdCell + '</td>' +
       '<td><div class="bar"><i style="width:' + Math.min(k.pct,100) + '%;background:' + col + '"></i></div><small>' + (k.hasData ? k.pct + '% ' : '') + bg + '</small></td>' +
-      '<td>' + esc(k.owner) + '</td><td><button class="btn sm" onclick="viewKpi(\'' + esc(k.id) + '\')">📈 กราฟ</button> ' +
+      '<td>' + esc(k.owner) + '</td><td><span><button class="btn sm" onclick="viewKpi(\'' + esc(k.id) + '\')">📈 กราฟ</button> ' +
       '<button class="btn sm ' + (adm ? '' : 'primary') + '" onclick="openKpiForm(\'' + esc(k.id) + '\')">' + (adm ? 'แก้ไข' : '📝 บันทึกผล') + '</button> ' +
-      (adm ? '<button class="btn sm danger" onclick="delKPI(\'' + esc(k.id) + '\')">ลบ</button>' : '') + '</td></tr>';
+      (adm ? '<button class="btn sm danger" onclick="delKPI(\'' + esc(k.id) + '\')">ลบ</button>' : '') + '</span></td></tr>';
   });
   $('kpiBody').innerHTML = html || '<tr><td colspan="7" class="ct muted">ไม่พบตัวชี้วัดตามเงื่อนไขที่เลือก</td></tr>';
+  labelize('kpiBody');
 }
 function exportKpiCsv(){
   if (!KPI_CACHE || !KPI_CACHE.rows || !KPI_CACHE.rows.length) return toast('ไม่มีข้อมูล KPI ให้ส่งออก');
@@ -1080,10 +1239,10 @@ function openKpiForm(id){
   var mode = k ? (k.ytdMode || 'last') : 'last';
   var mg = FY_SHORT.map(function(m, i){
     var v = k && k.months[i] !== '' ? k.months[i] : '';
-    return '<div><label>' + m + '</label><input id="km' + i + '" type="number" step="any" value="' + esc(v) + '"></div>';
+    return '<div><label>' + m + '</label><input id="km' + i + '" type="number" step="any" inputmode="decimal" value="' + esc(v) + '"></div>';
   }).join('');
   var body = '<div class="grid3">' +
-      fld('ปีงบประมาณ *', '<input id="kYear" value="' + esc(y) + '" placeholder="เช่น 2570"' + dis + '>') +
+      fld('ปีงบประมาณ *', '<input id="kYear" value="' + esc(y) + '" placeholder="เช่น 2570" inputmode="numeric"' + dis + '>') +
       fld('รหัส', '<input id="kCode" value="' + esc(k ? k.code : '') + '" placeholder="K1"' + dis + '>') +
       fld('เป้าหมาย', '<input id="kTarget" value="' + esc(k ? dash(k.target) : '') + '" placeholder="เช่น >=80% หรือ >80"' + dis + '>') + '</div>' +
     fld('ชื่อตัวชี้วัด *', '<input id="kName" value="' + esc(k ? k.name : '') + '"' + dis + '>') +
@@ -1094,9 +1253,9 @@ function openKpiForm(id){
       fld('วิธีรวมผล YTD', '<select id="kYtd"' + dis + '>' + ['last','sum','avg'].map(function(m){
         return '<option value="' + m + '"' + (m === mode ? ' selected' : '') + '>' + YTD_LABEL[m] + '</option>'; }).join('') + '</select>') + '</div>' +
     '<div class="sec-t">ผลงานรายเดือน (เว้นว่างถ้ายังไม่มีข้อมูล)</div><div class="m-grid">' + mg + '</div>' +
-    '<div style="margin-top:10px">' + fld('หมายเหตุ / ปัญหาอุปสรรค', '<textarea id="kNote" rows="2">' + esc(k ? k.note : '') + '</textarea>') + '</div>' +
-    (adm ? '<p class="hint">ใช้ >= หรือ <= นำหน้าเป้าหมาย เช่น >=80% · ถ้าต้องการ "มากกว่า" แบบเคร่งครัด (ได้ 80 ถือว่าไม่ผ่าน) ให้ใช้ >80 · ค่าร้อยละกรอกเป็นตัวเลขเต็ม เช่น 85 แทน 85%</p>'
-         : '<p class="hint">คุณสามารถบันทึกตัวเลขผลงานรายเดือนและหมายเหตุได้ทันที (การแก้ชื่อ/เกณฑ์เป้าหมายสงวนสิทธิ์สำหรับผู้ดูแลระบบ)</p>');
+    '<div style="margin-top:10px">' + fld('หมายเหตุ / ปัญหาอุปสรรค', '<textarea id="kNote" rows="2" maxlength="1000">' + esc(k ? k.note : '') + '</textarea>') + '</div>' +
+    (adm ? '<p class="hint">ใช้ >= หรือ <= นำหน้าเป้าหมาย เช่น >=80% · ถ้าต้องการ "มากกว่า" แบบเคร่งครัด ให้ใช้ >80 · ค่าร้อยละกรอกเป็นตัวเลขเต็ม เช่น 85</p>'
+         : '<p class="hint">คุณบันทึกตัวเลขผลงานรายเดือนและหมายเหตุได้ (การแก้ชื่อ/เกณฑ์เป้าหมายสงวนสิทธิ์สำหรับผู้ดูแลระบบ)</p>');
   openModal(k ? (adm ? 'แก้ไขตัวชี้วัด' : '📝 บันทึกผลตัวชี้วัด: ' + esc(k.code)) : 'เพิ่มตัวชี้วัด', body,
     '<button class="btn" onclick="closeModal()">ยกเลิก</button><button class="btn primary" onclick="saveKpiForm(\'' + (k ? esc(k.id) : '') + '\')">บันทึก</button>', true);
 }
@@ -1105,11 +1264,22 @@ function saveKpiForm(id){
   var d = { id:id, year:$('kYear').value.trim(), code:$('kCode').value.trim(), target:$('kTarget').value.trim(), name:$('kName').value.trim(),
     group:$('kGroup').value.trim(), owner:$('kOwner').value.trim(), freq:$('kFreq').value.trim(), formula:$('kFormula').value.trim(),
     ytdMode:$('kYtd').value, note:$('kNote').value.trim(), months:months };
-  if (ME && ME.role === 'admin' && !d.name) return toast('กรุณากรอกชื่อตัวชี้วัด');
+  if (ME && ME.role === 'admin'){
+    if (!d.name) return toast('กรุณากรอกชื่อตัวชี้วัด');
+    if (!/^25\d{2}$/.test(d.year)) return toast('ปีงบประมาณไม่ถูกต้อง (เช่น 2570)');
+  }
   spin(1);
   api('saveKPI', TOKEN, d).then(function(r){
     spin(0); toast(r.msg);
-    if (r.ok){ closeModal(); $('kpiYear').innerHTML = '<option value="' + esc(d.year) + '"></option>'; KPI_CACHE = null; loadKPI(); loadBoot(); }
+    if (!r.ok) return;
+    closeModal(true);
+    var sel = $('kpiYear');
+    if (sel && d.year){
+      var exists = Array.prototype.some.call(sel.options, function(o){ return o.value === d.year; });
+      if (!exists){ var op = document.createElement('option'); op.value = d.year; op.textContent = 'ปีงบประมาณ ' + d.year; sel.appendChild(op); }
+      sel.value = d.year;
+    }
+    KPI_CACHE = null; loadKPI(); loadBoot();
   }).catch(fail);
 }
 function delKPI(id){
@@ -1128,7 +1298,7 @@ function statusBadge(s){
   return '<span class="bg ' + c + '">' + esc(s) + '</span>';
 }
 function renderPerson(){
-  var q = ($('pSearch').value || '').toLowerCase(), adm = ME.role === 'admin';
+  var q = ($('pSearch').value || '').toLowerCase(), adm = ME && ME.role === 'admin';
   var list = PERSON_CACHE.filter(function(p){ return !q || (p.fullName + ' ' + p.licenseNo + ' ' + p.position).toLowerCase().indexOf(q) > -1; });
   $('personBody').innerHTML = list.map(function(p){
     var exp = p.position === PTA ? '<span class="muted">-</span>' : thDate(p.licenseExpire);
@@ -1136,10 +1306,11 @@ function renderPerson(){
       (p.mine ? ' <span class="tag">ฉัน</span>' : '') + '</td><td>' + esc(p.position) + '</td>' +
       '<td>' + (p.position === PTA ? '<span class="muted">-</span>' : (esc(p.licenseNo) || '-')) + '</td>' +
       '<td>' + scoreBar(p.licenseScore, p.position) + '</td><td>' + exp + '</td><td>' + (esc(p.phone) || '-') + '</td>' +
-      '<td>' + statusBadge(p.status) + '</td><td>' +
+      '<td>' + statusBadge(p.status) + '</td><td><span>' +
       ((adm || p.mine) ? '<button class="btn sm" onclick="openPersonForm(\'' + esc(p.id) + '\')">แก้ไข</button> ' : '') +
-      (adm ? '<button class="btn sm danger" onclick="delPerson(\'' + esc(p.id) + '\')">ลบ</button>' : '') + '</td></tr>';
+      (adm ? '<button class="btn sm danger" onclick="delPerson(\'' + esc(p.id) + '\')">ลบ</button>' : '') + '</span></td></tr>';
   }).join('') || '<tr><td colspan="9" class="ct muted">ไม่พบข้อมูล</td></tr>';
+  labelize('personBody');
 }
 function exportPersonCsv(){
   if (!PERSON_CACHE || !PERSON_CACHE.length) return toast('ไม่มีข้อมูลบุคลากรให้ส่งออก');
@@ -1152,35 +1323,37 @@ function exportPersonCsv(){
 }
 function findPerson(id){ var p = null; PERSON_CACHE.forEach(function(x){ if (x.id === id) p = x; }); return p; }
 function openPersonForm(id){
-  var p = id ? findPerson(id) : null, adm = ME.role === 'admin';
+  var p = id ? findPerson(id) : null, adm = ME && ME.role === 'admin';
+  if (id && !p) return toast('ไม่พบข้อมูลบุคลากรนี้ กรุณารีเฟรช');
   var pos = p ? p.position : POS[0], st = p ? p.status : 'ปฏิบัติงาน';
+  var posList = POS.indexOf(pos) > -1 ? POS : POS.concat([pos]);
   var stList = STATUSES.indexOf(st) > -1 ? STATUSES : STATUSES.concat([st]);
   var body = '<div style="display:flex;gap:16px;flex-wrap:wrap">' +
       '<div style="width:130px"><img id="pvPhoto" class="pv-photo" src="' + esc(avatarOf(p ? p.fullName : '', p ? p.photoUrl : '')) + '">' +
-        (p ? '<input type="file" id="fPhoto" accept="image/*" onchange="doUploadPhoto()" style="font-size:.72rem;padding:4px">'
+        (p ? '<input type="file" id="fPhoto" accept="image/jpeg,image/png,image/webp" onchange="doUploadPhoto()" style="font-size:.72rem;padding:4px">'
            : '<small class="muted">บันทึกข้อมูลก่อน แล้วจึงอัปโหลดรูป</small>') +
         '<input type="hidden" id="fPhotoUrl" value="' + esc(p ? p.photoUrl : '') + '"><input type="hidden" id="fId" value="' + esc(p ? p.id : '') + '"></div>' +
-      '<div style="flex:1;min-width:240px">' +
-        fld('ชื่อ-สกุล *', '<input id="fName" value="' + esc(p ? p.fullName : '') + '">') +
-        fld('ตำแหน่ง *', '<select id="fPos" onchange="togglePTA()">' + POS.map(function(o){ return '<option' + (o === pos ? ' selected' : '') + '>' + o + '</option>'; }).join('') + '</select>') +
+      '<div style="flex:1;min-width:220px">' +
+        fld('ชื่อ-สกุล *', '<input id="fName" maxlength="100" value="' + esc(p ? p.fullName : '') + '">') +
+        fld('ตำแหน่ง *', '<select id="fPos" onchange="togglePTA()"' + (adm ? '' : ' disabled') + '>' + posList.map(function(o){ return '<option' + (o === pos ? ' selected' : '') + '>' + esc(o) + '</option>'; }).join('') + '</select>') +
         fld('สถานะ' + (adm ? '' : ' (แก้ไขได้เฉพาะผู้ดูแลระบบ)'), '<select id="fStatus"' + (adm ? '' : ' disabled') + '>' +
           stList.map(function(s){ return '<option' + (s === st ? ' selected' : '') + '>' + esc(s) + '</option>'; }).join('') + '</select>') +
       '</div></div>' +
     '<div id="licBox"><div class="sec-t">ใบประกอบวิชาชีพ</div><div class="grid3">' +
-      fld(LBL.license, '<input id="fLic" value="' + esc(p ? p.licenseNo : '') + '">') +
-      fld(LBL.score + ' (เป้าหมาย ' + PTCEU_TARGET + ')', '<input id="fScore" type="number" min="0" value="' + (p ? (p.licenseScore || 0) : 0) + '">') +
+      fld(esc(LBL.license), '<input id="fLic" maxlength="30" value="' + esc(p ? p.licenseNo : '') + '">') +
+      fld(esc(LBL.score) + ' (เป้าหมาย ' + PTCEU_TARGET + ')', '<input id="fScore" type="number" min="0" inputmode="decimal" value="' + (p ? (p.licenseScore || 0) : 0) + '">') +
       fld('วันหมดอายุ', '<input id="fExp" type="date" value="' + esc(p ? p.licenseExpire : '') + '">') + '</div></div>' +
     '<div class="sec-t">ข้อมูลส่วนตัว</div><div class="grid2">' +
       fld('วันเกิด', '<input id="fDob" type="date" value="' + esc(p ? p.dob : '') + '">') +
       fld('วันเริ่มงาน', '<input id="fStart" type="date" value="' + esc(p ? p.startDate : '') + '">') + '</div>' +
-    '<div class="grid2">' + fld('เบอร์โทร', '<input id="fPhone" inputmode="tel" value="' + esc(p ? p.phone : '') + '">') +
-      fld('อีเมล', '<input id="fEmail" type="email" value="' + esc(p ? p.email : '') + '">') + '</div>' +
+    '<div class="grid2">' + fld('เบอร์โทร', '<input id="fPhone" inputmode="tel" maxlength="20" value="' + esc(p ? p.phone : '') + '">') +
+      fld('อีเมล', '<input id="fEmail" type="email" autocapitalize="none" value="' + esc(p ? p.email : '') + '">') + '</div>' +
     '<p class="hint">อีเมลใช้ส่งแจ้งเตือนใบประกอบใกล้หมดอายุอัตโนมัติ (90/60/30/7 วัน และวันหมดอายุ)</p>';
   openModal(p ? 'แก้ไขข้อมูลบุคลากร' : 'เพิ่มบุคลากร', body,
     '<button class="btn" onclick="closeModal()">ยกเลิก</button><button class="btn primary" onclick="savePerson()">บันทึก</button>', true);
   togglePTA();
 }
-function togglePTA(){ var b = $('licBox'); if (b) b.classList.toggle('hide', $('fPos').value === PTA); }
+function togglePTA(){ var b = $('licBox'), s = $('fPos'); if (b && s) b.classList.toggle('hide', s.value === PTA); }
 function savePerson(){
   var d = { id:$('fId').value, fullName:$('fName').value.trim(), position:$('fPos').value, status:$('fStatus').value,
     licenseNo:$('fLic').value.trim(), licenseScore:$('fScore').value, licenseExpire:$('fExp').value,
@@ -1192,7 +1365,7 @@ function savePerson(){
     spin(0); toast(r.msg);
     if (!r.ok) return;
     if (r.me){ ME = r.me; paintDock(ME); if ($('page-profile').classList.contains('on')) paintProfile(); }
-    closeModal(); loadPerson(); loadBoot();
+    closeModal(true); loadPerson(); loadBoot();
   }).catch(fail);
 }
 function delPerson(id){
@@ -1202,23 +1375,29 @@ function delPerson(id){
   api('deletePersonnel', TOKEN, id).then(function(r){ spin(0); toast(r.msg); loadPerson(); loadBoot(); }).catch(fail);
 }
 function doUploadPhoto(){
-  var f = $('fPhoto').files[0]; if (!f) return;
+  var inp = $('fPhoto'); if (!inp || !inp.files || !inp.files[0]) return;
+  var f = inp.files[0];
   var pid = $('fId').value; if (!pid) return toast('กรุณาบันทึกข้อมูลก่อนอัปโหลดรูป');
-  if (f.size > 15 * 1024 * 1024) return toast('ไฟล์ใหญ่เกิน 15 MB');
+  if (f.size > 15 * 1024 * 1024){ inp.value = ''; return toast('ไฟล์ใหญ่เกิน 15 MB'); }
   spin(1);
   var reader = new FileReader();
+  reader.onerror = function(){ spin(0); inp.value = ''; toast('อ่านไฟล์ไม่สำเร็จ ลองเลือกไฟล์ใหม่อีกครั้ง'); };
+  reader.onabort = reader.onerror;
   reader.onload = function(e){
     var img = new Image();
-    img.onerror = function(){ spin(0); toast('อ่านไฟล์รูปนี้ไม่ได้ ลองใช้ไฟล์ JPG หรือ PNG'); };
+    img.onerror = function(){ spin(0); inp.value = ''; toast('อ่านไฟล์รูปนี้ไม่ได้ ลองใช้ไฟล์ JPG หรือ PNG'); };
     img.onload = function(){
-      var w = img.width, h = img.height, max = 500;
-      if (w > h && w > max){ h = h * (max / w); w = max; } else if (h > max){ w = w * (max / h); h = max; }
-      var cv = document.createElement('canvas'); cv.width = w; cv.height = h;
-      cv.getContext('2d').drawImage(img, 0, 0, w, h);
-      api('uploadPhoto', TOKEN, pid, cv.toDataURL('image/jpeg', 0.82)).then(function(r){
-        spin(0); toast(r.msg);
+      try {
+        var w = img.width, h = img.height, max = 500;
+        if (w > h && w > max){ h = Math.round(h * (max / w)); w = max; } else if (h > max){ w = Math.round(w * (max / h)); h = max; }
+        var cv = document.createElement('canvas'); cv.width = w; cv.height = h;
+        cv.getContext('2d').drawImage(img, 0, 0, w, h);
+        var dataUrl = cv.toDataURL('image/jpeg', 0.82);
+      } catch(err){ spin(0); inp.value = ''; return toast('ย่อขนาดรูปไม่สำเร็จ: ' + err.message); }
+      api('uploadPhoto', TOKEN, pid, dataUrl).then(function(r){
+        spin(0); toast(r.msg); inp.value = '';
         if (r.ok){ $('fPhotoUrl').value = r.url; $('pvPhoto').src = r.url; if (r.me){ ME = r.me; paintDock(ME); } }
-      }).catch(fail);
+      }).catch(function(err){ inp.value = ''; fail(err); });
     };
     img.src = e.target.result;
   };
@@ -1240,8 +1419,9 @@ function loadUsers(){
       return '<tr><td><img class="avatar" src="' + esc(avatarOf(u.fullName, u.photoUrl)) + '"></td><td><b>' + esc(u.username) + '</b></td>' +
         '<td>' + esc(u.fullName) + '</td><td>' + esc(u.position) + '</td>' +
         '<td><span class="bg ' + (u.role === 'admin' ? 'blue' : 'gray') + '">' + (u.role === 'admin' ? 'ผู้ดูแลระบบ' : 'ผู้ใช้') + '</span></td>' +
-        '<td><span class="bg ' + (u.active ? 'green' : 'amber') + '">' + (u.active ? 'ใช้งาน' : 'รออนุมัติ/ปิด') + '</span></td><td>' + acts + '</td></tr>';
+        '<td><span class="bg ' + (u.active ? 'green' : u.pending ? 'amber' : 'gray') + '">' + (u.active ? 'ใช้งาน' : u.pending ? 'รออนุมัติ' : 'ปิดใช้งาน') + '</span></td><td><span>' + acts + '</span></td></tr>';
     }).join('') || '<tr><td colspan="7" class="ct muted">ไม่มีข้อมูล</td></tr>';
+    labelize('userBody');
   }).catch(fail);
 }
 function findUser(id){ var u = null; USER_CACHE.forEach(function(x){ if (x.userId === id) u = x; }); return u; }
@@ -1251,8 +1431,11 @@ function userCall(fn, args, msg){
   api.apply(null, [fn, TOKEN].concat(args)).then(function(r){ spin(0); toast(r.msg); loadUsers(); loadBoot(); }).catch(fail);
 }
 function uAct(id, on){ var u = findUser(id); userCall('setUserActive', [id, on], on ? null : 'ปิดบัญชี ' + (u ? u.username : '') + ' ? (ผู้ใช้จะถูกออกจากระบบทันที)'); }
-function uRole(id){ var u = findUser(id); if (!u) return; var to = u.role === 'admin' ? 'user' : 'admin';
-  userCall('setUserRole', [id, to], (to === 'admin' ? 'ตั้ง ' : 'ลดสิทธิ์ ') + u.username + (to === 'admin' ? ' เป็นผู้ดูแลระบบ?' : ' เป็นผู้ใช้ทั่วไป?')); }
+function uRole(id){
+  var u = findUser(id); if (!u) return;
+  var to = u.role === 'admin' ? 'user' : 'admin';
+  userCall('setUserRole', [id, to], (to === 'admin' ? 'ตั้ง ' : 'ลดสิทธิ์ ') + u.username + (to === 'admin' ? ' เป็นผู้ดูแลระบบ?' : ' เป็นผู้ใช้ทั่วไป?'));
+}
 function uReset(id){
   var u = findUser(id); if (!u) return;
   var pw = prompt('ตั้งรหัสผ่านใหม่ให้ ' + u.username + ' (อย่างน้อย 6 ตัว)');
@@ -1281,8 +1464,9 @@ function renderLogs(){
     var c = (l.action === 'LOGIN_FAIL' || l.action === 'DELETE' || l.action === 'CLIENT_ERR') ? 'red' : l.action === 'AI' ? 'purple' :
             (l.action === 'LINE' || l.action === 'EMAIL' || l.action === 'REPORT' || l.action === 'BACKUP') ? 'blue' : 'gray';
     return '<tr><td>' + thDateTime(l.at) + '</td><td>' + esc(l.user) + '</td><td><span class="bg ' + c + '">' + esc(LOG_LABEL[l.action] || l.action) +
-      '</span></td><td>' + esc(l.detail) + '</td></tr>';
+      '</span></td><td><span>' + esc(l.detail) + '</span></td></tr>';
   }).join('') || '<tr><td colspan="4" class="ct muted">ไม่มีข้อมูล</td></tr>';
+  labelize('logBody');
 }
 
 function okBadge(ok, yes, no){ return '<span class="bg ' + (ok ? 'green' : 'gray') + '" style="margin-left:6px">' + (ok ? yes : no) + '</span>'; }
@@ -1300,7 +1484,7 @@ function loadSettings(){
     $('webhookUrl').textContent = s.webAppUrl || '-';
     $('stLine').innerHTML = s.lineEnabled
       ? okBadge(s.lineToken && s.lineGroupId, 'พร้อมใช้งาน', s.lineToken ? 'รอ Group ID' : 'ยังไม่ตั้งค่า')
-      : '<span class="bg gray" style="margin-left:6px">ปิดอยู่ (วางระบบไว้ก่อน)</span>';
+      : '<span class="bg gray" style="margin-left:6px">ปิดอยู่</span>';
     $('stGemini').innerHTML = okBadge(s.geminiKey, 'พร้อมใช้งาน', 'ยังไม่ตั้งค่า');
     $('stQuota').textContent = s.mailQuota !== null && s.mailQuota !== undefined ? 'โควตาอีเมลคงเหลือวันนี้: ' + s.mailQuota : '';
     var tr = s.triggers || [];
@@ -1325,19 +1509,18 @@ function saveSettingsForm(){
 }
 function copyWebhook(){ copyText($('webhookUrl').textContent, 'คัดลอก Webhook URL แล้ว'); }
 
-/* ===== โมดูล: ปุ่มขึ้น/ลงขยับบนหน้าจอทันที แล้วส่งลำดับทั้งหมดไปบันทึกเบื้องหลัง ===== */
-var MOD_DIRTY = false;
 function setModDirty(on){ MOD_DIRTY = !!on; var b = $('modSaveBar'); if (b) b.classList.toggle('hide', !on); }
 function renderModTable(){
   $('modBody').innerHTML = MOD_CACHE.map(function(m, i){
     var id = esc(m.id);
     return '<tr><td class="ct"><b>' + (i + 1) + '</b></td><td style="font-size:1.3rem">' + esc(m.icon) + '</td><td><b style="border-left:4px solid ' + esc(m.color) + ';padding-left:6px">' + esc(m.name) + '</b></td>' +
-      '<td>' + esc(m.subtitle) + '</td><td><small>' + esc(m.url) + '</small></td>' +
-      '<td><span class="bg ' + (m.active ? 'green' : 'gray') + '">' + (m.active ? 'เปิด' : 'ปิด') + '</span></td><td>' +
+      '<td>' + esc(m.subtitle) + '</td><td><small style="word-break:break-all">' + esc(m.url) + '</small></td>' +
+      '<td><span class="bg ' + (m.active ? 'green' : 'gray') + '">' + (m.active ? 'เปิด' : 'ปิด') + '</span></td><td><span>' +
       '<button class="btn sm" ' + (i === 0 ? 'disabled' : '') + ' onclick="mMove(' + i + ',\'up\')">↑</button> ' +
       '<button class="btn sm" ' + (i === MOD_CACHE.length - 1 ? 'disabled' : '') + ' onclick="mMove(' + i + ',\'down\')">↓</button> ' +
-      '<button class="btn sm" onclick="openModForm(\'' + id + '\')">แก้ไข</button> <button class="btn sm danger" onclick="mDel(\'' + id + '\')">ลบ</button></td></tr>';
+      '<button class="btn sm" onclick="openModForm(\'' + id + '\')">แก้ไข</button> <button class="btn sm danger" onclick="mDel(\'' + id + '\')">ลบ</button></span></td></tr>';
   }).join('') || '<tr><td colspan="7" class="ct muted">ไม่มีข้อมูล</td></tr>';
+  labelize('modBody');
 }
 function loadMods(){
   skel('modBody', 7, 4);
@@ -1353,24 +1536,24 @@ function openModForm(id){
   var grid = ICON_SET.map(function(ic){ return '<div class="icon-opt" onclick="pickIcon(this)">' + ic + '</div>'; }).join('');
   var body = fld('ไอคอน', '<div class="icon-row"><div class="icon-preview" id="mIconPreview">' + esc(cur) + '</div><input type="hidden" id="mIcon" value="' + esc(cur) + '">' +
       '<small class="muted">แตะเลือกด้านล่าง</small></div><div class="icon-grid">' + grid + '</div>') +
-    fld('ชื่อโมดูล *', '<input id="mName" value="' + esc(m ? m.name : '') + '">') +
-    fld('คำอธิบาย', '<input id="mSub" value="' + esc(m ? m.subtitle : '') + '">') +
-    fld('ลิงก์ * (#kpi สำหรับหน้าในระบบ หรือ https://...)', '<input id="mUrl" value="' + esc(m ? m.url : '') + '">') +
+    fld('ชื่อโมดูล *', '<input id="mName" maxlength="60" value="' + esc(m ? m.name : '') + '">') +
+    fld('คำอธิบาย', '<input id="mSub" maxlength="120" value="' + esc(m ? m.subtitle : '') + '">') +
+    fld('ลิงก์ * (#kpi สำหรับหน้าในระบบ หรือ https://...)', '<input id="mUrl" value="' + esc(m ? m.url : '') + '" autocapitalize="none">') +
     fld('ลำดับที่แสดงในเมนู (1 = บนสุด · ทั้งหมด ' + (m ? MOD_CACHE.length : MOD_CACHE.length + 1) + ' รายการ)',
-        '<input id="mOrder" type="number" min="1" max="' + (m ? MOD_CACHE.length : MOD_CACHE.length + 1) + '" step="1" value="' + curPos + '">') +
+        '<input id="mOrder" type="number" inputmode="numeric" min="1" max="' + (m ? MOD_CACHE.length : MOD_CACHE.length + 1) + '" step="1" value="' + curPos + '">') +
     '<div class="grid2">' + fld('สีแถบ', '<input id="mColor" type="color" value="' + esc(m ? m.color : '#0ea5e9') + '" style="height:40px;padding:2px">') +
     '<div class="fld"><label>&nbsp;</label><label class="chk"><input type="checkbox" id="mActive"' + (!m || m.active ? ' checked' : '') + '> แสดงในเมนู</label></div></div>';
   openModal(m ? 'แก้ไขโมดูล' : 'เพิ่มโมดูล', body,
     '<button class="btn" onclick="closeModal()">ยกเลิก</button><button class="btn primary" onclick="saveMod(\'' + (m ? esc(m.id) : '') + '\')">บันทึก</button>');
 }
-function pickIcon(el){ $('mIcon').value = el.textContent; $('mIconPreview').textContent = el.textContent; }
+function pickIcon(el){ $('mIcon').value = el.textContent; $('mIconPreview').textContent = el.textContent; FORM_DIRTY = true; }
 function saveMod(id){
   var d = { id:id, name:$('mName').value.trim(), subtitle:$('mSub').value.trim(), url:$('mUrl').value.trim(),
     icon:$('mIcon').value, color:$('mColor').value, active:$('mActive').checked, order:$('mOrder').value };
   if (!d.name || !d.url) return toast('กรอกชื่อและลิงก์ให้ครบ');
   if (!/^#[a-z]+$/i.test(d.url) && !/^https:\/\//i.test(d.url)) return toast('ลิงก์ต้องขึ้นต้นด้วย # หรือ https:// เท่านั้น');
   spin(1);
-  api('saveModule', TOKEN, d).then(function(r){ spin(0); toast(r.msg); if (r.ok){ closeModal(); loadMods(); loadBoot(); } }).catch(fail);
+  api('saveModule', TOKEN, d).then(function(r){ spin(0); toast(r.msg); if (r.ok){ closeModal(true); loadMods(); loadBoot(); } }).catch(fail);
 }
 function mMove(i, dir){
   i = Number(i);
@@ -1379,7 +1562,7 @@ function mMove(i, dir){
   var t = MOD_CACHE[i]; MOD_CACHE[i] = MOD_CACHE[j]; MOD_CACHE[j] = t;
   setModDirty(true);
   renderModTable();
-  renderSidebarMods(MOD_CACHE.filter(function(m){ return m.active && m.url; }));   /* พรีวิวในเมนูข้างซ้าย */
+  renderSidebarMods(MOD_CACHE.filter(function(m){ return m.active && m.url; }));
 }
 function saveModOrder(){
   if (!MOD_DIRTY) return;
