@@ -47,16 +47,16 @@ label{font-size:.82rem;color:#475569;display:block;margin-bottom:3px;font-weight
 #sideMask{display:none}
 
 #app{display:flex;min-height:100vh}
-#side{width:240px;background:#0f172a;color:#cbd5e1;padding:16px 12px;flex:none;position:sticky;top:0;height:100vh;overflow:auto;display:flex;flex-direction:column;z-index:940}
+#side{width:245px;background:#0f172a;color:#cbd5e1;padding:16px 12px;flex:none;position:sticky;top:0;height:100vh;overflow:auto;display:flex;flex-direction:column;z-index:940}
 #side .logo{color:#fff;font-weight:700;font-size:1.02rem;padding:6px 8px 14px;line-height:1.4}
 #side .logo small{display:block;font-weight:400;font-size:.72rem;color:#64748b}
-.nav-item,.nav-mod{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:8px;margin-bottom:3px;cursor:pointer;font-size:.88rem;transition:.15s;position:relative}
+.nav-item,.nav-mod{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:8px;margin-bottom:4px;cursor:pointer;font-size:.88rem;transition:.15s;position:relative}
 .nav-item:hover,.nav-mod:hover{background:#1e293b;color:#fff}
 .nav-item.active{background:#0ea5e9;color:#fff;font-weight:600}
-.nav-mod{border-left:3px solid #0ea5e9;background:#111c30}
-.nav-sep{height:1px;background:#1e293b;margin:12px 4px}
-.nav-cap{font-size:.68rem;color:#475569;padding:4px 10px;letter-spacing:.5px}
-.nav-ico{width:20px;text-align:center}
+.nav-mod{border-left:3px solid #0ea5e9;background:#162238;color:#f1f5f9}
+.nav-sep{height:1px;background:#1e293b;margin:10px 4px}
+.nav-cap{font-size:.68rem;color:#64748b;padding:4px 10px;letter-spacing:.5px;text-transform:uppercase;font-weight:600}
+.nav-ico{width:20px;text-align:center;font-size:1rem}
 .nav-badge{position:absolute;right:10px;background:#ef4444;color:#fff;font-size:.68rem;font-weight:700;padding:1px 7px;border-radius:20px;line-height:1.5}
 .side-foot{margin-top:auto;padding:10px 8px;border-top:1px solid #1e293b;font-size:.68rem;color:#64748b;line-height:1.6}
 .side-foot b{color:#94a3b8}
@@ -66,8 +66,17 @@ main{flex:1;padding:20px 24px 90px;overflow:auto;min-width:0}
 .page-head h2{font-size:1.18rem}
 .head-tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .head-tools select{width:auto;min-width:150px}
-h3.sec{margin:20px 0 10px;font-size:1rem}
+h3.sec{margin:20px 0 10px;font-size:1rem;display:flex;align-items:center;gap:6px}
 #greet{margin:-8px 0 12px;color:#64748b;font-size:.88rem}
+
+/* Quick Access Module Cards on Home */
+.mod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin-bottom:18px}
+.mod-card{background:#fff;border-radius:12px;padding:14px 16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border-left:5px solid #0ea5e9;display:flex;align-items:center;gap:12px;cursor:pointer;transition:.18s}
+.mod-card:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)}
+.mod-card-ico{width:42px;height:42px;border-radius:10px;background:#f8fafc;display:flex;align-items:center;justify-content:center;font-size:1.45rem;flex:none}
+.mod-card-info{min-width:0;flex:1}
+.mod-card-title{font-weight:700;font-size:.92rem;color:#0f172a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mod-card-sub{font-size:.76rem;color:#64748b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
 
 .smart-banner{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
 .smart-chip{display:inline-flex;align-items:center;gap:8px;padding:8px 13px;border-radius:10px;font-size:.83rem;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.06);border-left:4px solid #0ea5e9;cursor:pointer;transition:.15s}
@@ -205,6 +214,10 @@ code.url{display:block;background:#f1f5f9;padding:8px;border-radius:8px;font-siz
   .head-tools input,.head-tools select{width:100%!important;min-width:0}
   #greet{margin:-6px 0 12px;color:#8e8e93}
 
+  .mod-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .mod-card{padding:12px;border-radius:14px;box-shadow:none}
+  .mod-card-ico{width:36px;height:36px;font-size:1.25rem}
+
   .two-col,.grid2,.grid3,.set-grid{grid-template-columns:1fr}
   .m-grid{grid-template-columns:repeat(3,1fr)}
   .stats-grid{grid-template-columns:repeat(2,1fr);gap:10px}
@@ -308,12 +321,22 @@ code.url{display:block;background:#f1f5f9;padding:8px;border-radius:8px;font-siz
 <div id="app" class="hide">
   <aside id="side">
     <div class="logo">🏥 PT Digital Center<small>โรงพยาบาลเขื่องใน</small></div>
+
+    <!-- หน้าหลัก + โมดูลเข้าถึงด่วนด้านซ้ายมือ -->
     <div class="nav-item active" data-p="home" onclick="goPage('home')"><span class="nav-ico">🏠</span>หน้าหลัก</div>
+    <div id="navModsWrap">
+      <div class="nav-cap" style="margin-top:4px">โมดูลและระบบงาน</div>
+      <div id="navMods"></div>
+    </div>
+
+    <div class="nav-sep"></div>
+    <div class="nav-cap">ข้อมูลหน่วยงาน</div>
     <div class="nav-item" data-p="kpi" onclick="goPage('kpi')"><span class="nav-ico">🎯</span>ตัวชี้วัด KPI</div>
     <div class="nav-item" data-p="person" onclick="goPage('person')"><span class="nav-ico">👥</span>ทะเบียนบุคลากร</div>
     <div class="nav-item" data-p="expiry" onclick="goPage('expiry')">
       <span class="nav-ico">⏰</span>ใบประกอบใกล้หมดอายุ<span id="expBadge" class="nav-badge hide">0</span></div>
     <div class="nav-item" data-p="profile" onclick="goPage('profile')"><span class="nav-ico">👤</span>โปรไฟล์ของฉัน</div>
+
     <div class="admin-only hide">
       <div class="nav-sep"></div>
       <div class="nav-cap">ผู้ดูแลระบบ</div>
@@ -322,8 +345,7 @@ code.url{display:block;background:#f1f5f9;padding:8px;border-radius:8px;font-siz
       <div class="nav-item" data-p="settings" onclick="goPage('settings')"><span class="nav-ico">🛠️</span>ตั้งค่าระบบ</div>
       <div class="nav-item" data-p="mods" onclick="goPage('mods')"><span class="nav-ico">⚙️</span>ตั้งค่าโมดูล</div>
     </div>
-    <div class="nav-sep"></div>
-    <div id="navMods"></div>
+
     <div class="side-foot" id="verFoot">กำลังโหลด...</div>
   </aside>
 
@@ -336,8 +358,21 @@ code.url{display:block;background:#f1f5f9;padding:8px;border-radius:8px;font-siz
         </div></div>
       <div id="greet"></div>
       <div id="smartBanner" class="smart-banner"></div>
+
+      <!-- การ์ดโมดูลเข้าถึงด่วนบนหน้าหลัก -->
+      <div id="homeModsSection" class="hide">
+        <h3 class="sec" style="margin-top:6px">🚀 โมดูลและระบบบริการ</h3>
+        <div id="homeModsGrid" class="mod-grid"></div>
+      </div>
+
+      <!-- Dashboard บุคลากรและใบประกอบ -->
+      <h3 class="sec" style="margin-top:6px">📊 สถิติบุคลากรและใบประกอบวิชาชีพ</h3>
       <div id="stats" class="stats-grid"></div>
+
+      <!-- AI วิเคราะห์ -->
       <div id="aiBox"></div>
+
+      <!-- Dashboard ตัวชี้วัด KPI -->
       <div id="kpiDash"></div>
     </section>
 
@@ -611,6 +646,19 @@ function thDateTime(s){ if (!s) return '-'; var a = String(s).split(' '); return
 function dash(v){ return (v === '-' || v == null) ? '' : v; }
 function fld(label, input){ return '<div class="fld"><label>' + label + '</label>' + input + '</div>'; }
 
+function copyText(text, msg){
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){ toast(msg || 'คัดลอกแล้ว'); }).catch(function(){ fallbackCopy(text, msg); });
+  } else fallbackCopy(text, msg);
+}
+function fallbackCopy(text, msg){
+  var ta = document.createElement('textarea');
+  ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); toast(msg || 'คัดลอกแล้ว'); } catch(e){ toast('คัดลอกไม่สำเร็จ'); }
+  document.body.removeChild(ta);
+}
+
 function labelize(tbodyId){
   var tb = $(tbodyId); if (!tb) return;
   var tbl = tb.closest ? tb.closest('table') : tb.parentNode;
@@ -863,7 +911,7 @@ function goPage(p){
   if (MOD_DIRTY && p !== 'mods'){
     if (!confirm('ลำดับโมดูลที่เปลี่ยนยังไม่ได้บันทึก ออกจากหน้านี้และทิ้งการเปลี่ยนแปลง?')) return;
     setModDirty(false);
-    if (BOOT) renderSidebarMods(BOOT.modules);
+    if (BOOT) renderModulesUI(BOOT.modules);
   }
   ['home','kpi','person','expiry','users','logs','settings','mods','profile'].forEach(function(x){
     var el = $('page-' + x); if (el) el.classList.toggle('on', x === p); });
@@ -911,7 +959,7 @@ function applyBoot(d){
   document.querySelectorAll('.admin-only').forEach(function(e){ e.classList.toggle('hide', !adm); });
   document.querySelectorAll('.thLic').forEach(function(e){ e.textContent = LBL.license; });
   document.querySelectorAll('.thScore').forEach(function(e){ e.textContent = LBL.score; });
-  if (!MOD_DIRTY) renderSidebarMods(d.modules);
+  if (!MOD_DIRTY) renderModulesUI(d.modules);
   paintHome(d);
   paintDock(ME);
   var sel = $('kpiYear');
@@ -925,12 +973,30 @@ function fillYears(years, sel){
   $('kpiYear').innerHTML = (years || []).map(function(y){
     return '<option value="' + esc(y) + '"' + (y === sel ? ' selected' : '') + '>ปีงบประมาณ ' + esc(y) + '</option>'; }).join('');
 }
-function renderSidebarMods(mods){
-  $('navMods').innerHTML = (mods || []).filter(function(m){ return m.url; }).map(function(m){
+
+function renderModulesUI(mods){
+  var activeMods = (mods || []).filter(function(m){ return m.url; });
+  // 1. แสดงในแถบซ้ายมือ ใต้คำว่า "หน้าหลัก"
+  var wrap = $('navModsWrap');
+  if (wrap) wrap.classList.toggle('hide', activeMods.length === 0);
+  $('navMods').innerHTML = activeMods.map(function(m){
     return '<div class="nav-mod" data-url="' + esc(m.url) + '" onclick="openMod(this)" style="border-left-color:' + esc(m.color) + '" title="' + esc(m.subtitle) + '">' +
       '<span class="nav-ico">' + esc(m.icon) + '</span><span>' + esc(m.name) + '</span></div>';
   }).join('');
+
+  // 2. แสดงเป็นการ์ดเข้าถึงด่วนบนหน้าหลัก
+  var sec = $('homeModsSection'), grid = $('homeModsGrid');
+  if (sec && grid){
+    sec.classList.toggle('hide', activeMods.length === 0);
+    grid.innerHTML = activeMods.map(function(m){
+      return '<div class="mod-card" data-url="' + esc(m.url) + '" onclick="openMod(this)" style="border-left-color:' + esc(m.color) + '">' +
+        '<div class="mod-card-ico">' + esc(m.icon) + '</div>' +
+        '<div class="mod-card-info"><div class="mod-card-title">' + esc(m.name) + '</div>' +
+        '<div class="mod-card-sub">' + esc(m.subtitle || 'แตะเพื่อเปิดใช้งาน') + '</div></div></div>';
+    }).join('');
+  }
 }
+
 function openMod(el){
   var u = el.getAttribute('data-url');
   if (u.charAt(0) === '#'){
@@ -977,12 +1043,12 @@ function paintHome(d){
   $('greet').textContent = g + ' คุณ' + ((ME && ME.fullName) || '') + ' · วันนี้ ' + thDate(todayYmd());
   paintSmartBanner(d);
   $('stats').innerHTML =
-    statCard('บุคลากร (ปฏิบัติงาน)', s.total || 0, '#0ea5e9', 'คน — ไม่รวมรออนุมัติ/โอนย้าย/ลาออก') +
-    statCard('นักกายภาพบำบัด', s.pt || 0, '#6366f1', 'คน') +
-    statCard('ผู้ช่วยนักกายภาพฯ', s.pta || 0, '#8b5cf6', 'คน') +
+    statCard('บุคลากร (ปฏิบัติงาน)', s.total || 0, '#0ea5e9', 'คน — ไม่รวมรออนุมัติ/โอนย้าย/ลาออก', "goPage('person')") +
+    statCard('นักกายภาพบำบัด', s.pt || 0, '#6366f1', 'คน', "goPage('person')") +
+    statCard('ผู้ช่วยนักกายภาพฯ', s.pta || 0, '#8b5cf6', 'คน', "goPage('person')") +
     statCard('ใบประกอบใกล้หมดอายุ', s.expSoon || 0, '#f59e0b', 'ภายใน 180 วัน', "goPage('expiry')") +
     statCard('หมดอายุแล้ว', s.expired || 0, '#ef4444', 'ต้องต่ออายุ', "goPage('expiry')") +
-    statCard(esc(LBL.score) + ' ยังไม่ถึงเป้าหมาย', s.lowScore || 0, '#f97316', 'เป้าหมาย ' + PTCEU_TARGET + ' คะแนน', "goPage('person')") +
+    statCard(esc(LBL.score) + ' ยังไม่ถึงเป้าหมาย', s.lowScore || 0, '#f97316', 'เป้าหมาย ' + PTCEU_TARGET + ' คะแนน', "goPage('expiry')") +
     (ME && ME.role === 'admin' ? statCard('รออนุมัติ', s.pending || 0, '#94a3b8', 'บัญชีใหม่', "goPage('users')") : '');
   paintAI(d);
 
@@ -1003,7 +1069,7 @@ function paintHome(d){
     return '<div class="kpi-row alert" style="cursor:pointer" onclick="jumpKpiFilter(\'fail\')"><span title="' + esc(k.name) + '">' + esc(k.code) + ' ' + esc(k.name) + '</span><div class="bar"><i style="width:' +
       Math.min(k.pct,100) + '%;background:#ef4444"></i></div><b>' + k.pct + '%</b></div>';
   }).join('') || '<p class="muted">ไม่มีตัวชี้วัดต่ำกว่าเกณฑ์ 🎉</p>';
-  $('kpiDash').innerHTML = '<h3 class="sec">🎯 ภาพรวมตัวชี้วัด</h3><div class="stats-grid">' + (cards || '<p class="muted">ยังไม่มีข้อมูล KPI</p>') + '</div>' +
+  $('kpiDash').innerHTML = '<h3 class="sec">🎯 ภาพรวมตัวชี้วัด KPI</h3><div class="stats-grid">' + (cards || '<p class="muted">ยังไม่มีข้อมูล KPI</p>') + '</div>' +
     '<div class="two-col"><div class="panel"><h4>ผลตามกลุ่มยุทธศาสตร์ (ปี ' + esc(K.current || '-') + ')</h4>' + grp + '</div>' +
     '<div class="panel"><h4>⚠️ ตัวชี้วัดที่ต้องเร่งแก้ไข</h4>' + risk + '</div></div>';
 }
@@ -1620,7 +1686,7 @@ function mMove(i, dir){
   var t = MOD_CACHE[i]; MOD_CACHE[i] = MOD_CACHE[j]; MOD_CACHE[j] = t;
   setModDirty(true);
   renderModTable();
-  renderSidebarMods(MOD_CACHE.filter(function(m){ return m.active && m.url; }));
+  renderModulesUI(MOD_CACHE.filter(function(m){ return m.active && m.url; }));
 }
 function saveModOrder(){
   if (!MOD_DIRTY) return;
@@ -1637,7 +1703,7 @@ function saveModOrder(){
 function cancelModOrder(){
   setModDirty(false);
   loadMods();
-  if (BOOT) renderSidebarMods(BOOT.modules);
+  if (BOOT) renderModulesUI(BOOT.modules);
 }
 function mDel(id){
   if (MOD_DIRTY) return toast('กรุณากด "บันทึกลำดับ" หรือ "ยกเลิก" ก่อน');
